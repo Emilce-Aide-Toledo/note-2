@@ -7,8 +7,19 @@ La programación Orientada a Objetos nace de los problemas creados por la progra
 
 - Difícil de mantener.
 
-La programación orientada a objetos tiene cuatro características principales:
+La programación orientada a objetos tiene cuatro pilares o características principales:
 - **Encapsulamiento.** Quiere decir que oculta datos mediante código.
 - **Abstracción.** Es como se pueden representar los objetos en modo de código.
-- **Herencia. ** Es donde una clase nueva se crea a partir de una clase existente.
-- **Polimorfismo. ** Se refiere a la propiedad por la que es posible enviar mensajes sintácticamente iguales a objetos de tipos distintos.
+- **Herencia.** Es donde una clase nueva se crea a partir de una clase existente.
+- **Polimorfismo.** Se refiere a la propiedad por la que es posible enviar mensajes sintácticamente iguales a objetos de tipos distintos.
+
+La Programación Orientada a Objetos viene de una filosofía o forma de pensar que es la Orientación a Objetos y esto surge a partir de los problemas que necesitamos plasmar en código.
+
+Es analizar un problema en forma de objetos para después llevarlo a código, eso es la Orientación a Objetos.
+
+Un paradigma es una teoría que suministra la base y modelo para resolver problemas. La paradigma de Programación Orientada a Objetos se compone de 4 elementos:
+
+- Clases
+- Propiedades
+- Métodos
+- Objetos
