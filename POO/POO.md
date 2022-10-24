@@ -112,3 +112,21 @@ La **herencia** nos permite crear nuevas clases a partir de otras, se basa en mo
 Los **objetos** nos ayudan a crear instancia de una clase, el objeto es el resultado de lo que modelamos, de los parámetros declarados y usaremos los objetos para que nuestras clases cobren vida.
 
 Los **métodos constructores** dan un estado inicial al objeto y podemos añadirle algunos datos al objeto mediante estos métodos. Los atributos o elementos que pasemos a través del constructor serán los datos mínimos que necesita el objeto para que pueda vivir.
+
+
+### Herencia: Aplicando herencia en lenguajes
+![](https://i.ibb.co/DLTxQKQ/img1.png)
+
+<!-- - Java y PHP: 
+
+*Disclaimer:*
+ArrayList solo permite un argumento, por ejemplo: 
+```
+ArrayList<String> myList;
+```
+En este caso se necesitan dos argumentos quedaría algo así
+```
+Map<String, Map<String, Integer>> typeCarAccepted; 
+``` -->
+
+
