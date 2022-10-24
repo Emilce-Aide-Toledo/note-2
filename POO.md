@@ -90,3 +90,20 @@ La modularidad de nuestro código nos va a permitir:
 - Resolución rápida de problemas
 
 Una buena práctica es separando las clases en archivos diferentes.
+
+### ¿Qué es la herencia?
+
+*Don’t repeat yourself* es una filosofía que promueve la reducción de duplicación en programación, esto nos va a inculcar que no tengamos líneas de código duplicadas.
+
+Toda pieza de información nunca debería ser duplicada debido a que incrementa la dificultad en los cambios y evolución
+
+La **herencia** nos permite crear nuevas clases a partir de otras, se basa en modelos y conceptos de la vida real. También tenemos una jerarquía de padre e hijo.
+
+![](https://static.platzi.com/media/public/uploads/analizando-uber-en-objetos_7648b008-b099-4b0c-a511-a8be36bcd240.png)
+![](https://static.platzi.com/media/public/uploads/modelando-nuestros-objetos-uber-1_311f8882-9610-4198-aa89-3b86c2de62b2.png) 
+![](https://static.platzi.com/media/public/uploads/modelando-nuestros-objetos-uber-2_02bc1a0c-3810-48e4-947a-d05d00e3c230.png) 
+![](https://static.platzi.com/media/public/uploads/aplicando-herencia-a-nuestro-proyecto-uber2_5ba149e0-9792-4e82-9430-84a44b7c1060.png) 
+![](https://static.platzi.com/media/public/uploads/aplicando-herencia-a-nuestro-proyecto-uber1_bf088c4f-9198-4a8b-b91a-abe62debf181.png) 
+![](https://static.platzi.com/media/public/uploads/aplicando-herencia-a-nuestro-proyecto-uber3_5e853a21-7760-4fc9-9842-3c74d390c0ba.png) 
+![](https://static.platzi.com/media/public/uploads/diagrama_10b7b328-fbde-4cc2-b758-0b31ec6f0260.jpg)
+
