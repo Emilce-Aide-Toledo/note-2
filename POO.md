@@ -60,3 +60,12 @@ Algunos de los lenguajes de programación Orientados a Objetos son:
 ![](https://moqups.com/img/mqlps/images/uml-diagram-tool/Rectangle%2024%20copy%202.png)
 
 Ver: https://platzi.com/clases/1474-oop/17219-uml/
+
+### Objetos
+Los Objetos son aquellos que tienen propiedades y comportamientos, también serán sustantivos.
+
+- Pueden ser Físicos o Conceptuales
+
+Las **Propiedades** también pueden llamarse atributos y estos también serán sustantivos. Algunos atributos o propiedades son nombre, tamaño, forma, estado, etc. Son todas las características del objeto.
+
+Los **Comportamientos** serán todas las operaciones que el objeto puede hacer, suelen ser verbos o sustantivos y verbo. Algunos ejemplos pueden ser que el usuario pueda hacer login y logout.
