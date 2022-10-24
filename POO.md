@@ -107,3 +107,8 @@ La **herencia** nos permite crear nuevas clases a partir de otras, se basa en mo
 ![](https://static.platzi.com/media/public/uploads/aplicando-herencia-a-nuestro-proyecto-uber3_5e853a21-7760-4fc9-9842-3c74d390c0ba.png) 
 ![](https://static.platzi.com/media/public/uploads/diagrama_10b7b328-fbde-4cc2-b758-0b31ec6f0260.jpg)
 
+### Objetos, método constructor y su sintaxis en código
+
+Los **objetos** nos ayudan a crear instancia de una clase, el objeto es el resultado de lo que modelamos, de los parámetros declarados y usaremos los objetos para que nuestras clases cobren vida.
+
+Los **métodos constructores** dan un estado inicial al objeto y podemos añadirle algunos datos al objeto mediante estos métodos. Los atributos o elementos que pasemos a través del constructor serán los datos mínimos que necesita el objeto para que pueda vivir.
