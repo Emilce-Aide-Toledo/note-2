@@ -69,3 +69,24 @@ Los Objetos son aquellos que tienen propiedades y comportamientos, también ser�
 Las **Propiedades** también pueden llamarse atributos y estos también serán sustantivos. Algunos atributos o propiedades son nombre, tamaño, forma, estado, etc. Son todas las características del objeto.
 
 Los **Comportamientos** serán todas las operaciones que el objeto puede hacer, suelen ser verbos o sustantivos y verbo. Algunos ejemplos pueden ser que el usuario pueda hacer login y logout.
+
+### Abstracción y Clases
+Una **Clase** es el modelo por el cual nuestros objetos se van a construir y nos van a permitir generar más objetos.
+
+ Las **Clases** son los modelos sobres los cuales construiremos nuestros objetos.
+
+**Abstracción** es cuando separamos los datos de un objeto para generar un molde.
+
+### Modularidad
+
+La modularidad va muy relacionada con las clases y es un principio de la Programación Orientado a Objetos y va de la mano con el Diseño Modular que significa dividir un sistema en partes pequeñas y estas serán nuestros módulos pudiendo funcionar de manera independiente.
+
+La modularidad de nuestro código nos va a permitir:
+
+- Reutilizar
+- Evitar colapsos
+- Hacer nuestro código más mantenible
+- Legibilidad
+- Resolución rápida de problemas
+
+Una buena práctica es separando las clases en archivos diferentes.
