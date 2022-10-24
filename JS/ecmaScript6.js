@@ -2,8 +2,6 @@
 //ECMAScript es una especificación de lenguaje de scripting en la que se basa JavaScript.
 //Ecma International está a cargo de estandarizar ECMAScript.
 
-
-
 //ECMAScript 6
 //Uso de "let" y "const". 
 let myEdad = 30;
@@ -278,6 +276,7 @@ console.log(hey)
 let saludo = undefined
 saludo ??= "Hola"
 console.log(saludo)
+
 
 
 //ECMAScript 13
