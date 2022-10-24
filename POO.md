@@ -23,3 +23,40 @@ Un paradigma es una teoría que suministra la base y modelo para resolver proble
 - Propiedades
 - Métodos
 - Objetos
+
+#### Lenguajes Orientados a Objetos
+
+Algunos de los lenguajes de programación Orientados a Objetos son:
+
+  -- Java
+- Orientado a Objetos naturalmente
+- Es muy útilizado en Android
+- Y es usado del lado del servidor o Server Side
+
+-- PHP
+- Lenguaje interpretado
+- Pensado para la Web
+
+-- Python
+- Diseñado para ser fácil de usar
+- Múltiples usos: Web, Server Side, Análisis de Datos, Machine Learning, etc
+
+-- Javascript
+- Lenguaje interpretado
+- Orientado a Objetos pero basado en prototipos
+- Pensado para la Web
+
+-- C#
+
+-- Ruby
+
+-- Kotlin
+
+#### Diagramas de Modelado
+
+**OMT:** Object Modeling Techniques. Es una metodología para el análisis orientado a objetos.
+
+**UML:** Unified Modeling Language o Lenguaje de Modelado Unificado. Tomó las bases y técnicas de OMT unificándolas. Tenemos más opciones de diagramas como lo son Clases, Casos de Uso, Objetos, Actividades, Iteración, Estados, Implementación.
+![](https://moqups.com/img/mqlps/images/uml-diagram-tool/Rectangle%2024%20copy%202.png)
+
+Ver: https://platzi.com/clases/1474-oop/17219-uml/
