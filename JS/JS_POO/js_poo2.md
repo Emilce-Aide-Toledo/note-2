@@ -38,3 +38,86 @@ const obj3 = Object.assign({}, obj1);
 const obj4 = Object.create(obj1);
 
 ```
+
+### Qué es JSON.parse y JSON.stringify
+```javascript
+const obj1 = {
+    a: 'a',
+    b: 'b',
+    c: {
+        d: 'd',
+        e: 'e',
+    },
+    editA() {
+        this.a = 'Abcd'
+    }
+};
+
+const stringifiedComplexObj = JSON.stringify(obj1);
+// "{\"a\":\"a\",\"b\":\"b\",\"c\":{\"d\":\"d\",\"e\":\"e\"},\"f\":[1,\"2\",3]}"
+
+const obj2 = JSON.parse(stringifiedComplexObj); 
+// {a: "a", b: "b", c: {d: "d", e: "e"}}
+```
+
+**JSON.stringify()**
+El método ```JSON.stringify()``` convierte un objeto o valor de JavaScript en una cadena JSON, reemplazando opcionalmente valores si se especifica una función de reemplazo u opcionalmente incluyendo solo las propiedades especificadas si se especifica una matriz de reemplazo.
+
+*Descripción*
+
+Los objetos Boolean, Number, and String se convierten a sus valores primitivos, de acuerdo con la conversión semántica tradicional.
+
+Si durante la conversión se encuentra un undefined, una Function, o un Symbol se omite (cuando se encuentra en un objeto) o se censura a null (cuando se encuentra en un array). ```JSON.stringify()``` puede devolver undefined cuando se pasan valores “puros” como ```JSON.stringify(function(){})``` o ```JSON.stringify(undefined)```.
+Todas las propiedades que utilicen Symbol en los nombres de la clave se ignoran por completo, incluso si utilizan una función replacer.
+
+Las instancias de Date implementan la función toJSON() devolviendo una cadena de texto (igual que date.toISOString()). Por lo que son tratadas como strings.
+Los números Infinity y NaN, así como el valor null, se consideran null.
+
+El resto de instancias de Object (incluyendo Map, Set, WeakMap, y WeakSet) sólo tendrán serializadas sus propiedades enumerables.
+
+```JSON.stringify()``` convierte un valor en notación JSON que lo representa:
+
+**JSON.parse()**
+
+El método ```JSON.parse()``` analiza una cadena de texto (string) como JSON, transformando opcionalmente el valor producido por el análisis.
+
+```
+Why JSON.parse(JSON.stringify()) is a bad practice to clone an object in JavaScript
+```
+
+Puedes perder tipos de datos.
+JavaScript no te avisara cuando pierdas algún tipo de dato al usar ```JSON.stringify()``` , asi que GG mi rey
+Convierte tipos de datos no soportados en soportados, como infinity y NaN en null
+Los tipos de datos Date serán parseados como strings, no como Date
+No es tan rápido y eficiente.
+
+
+## Qué es recursividad
+Es cuando una función se llama a sí misma. 
+
+*¿Por qué escribir programas recursivos?*
+- Son mas cercanos a la descripción matemática.
+- Generalmente mas fáciles de analizar
+- Se adaptan mejor a las estructuras de datos recursivas.
+- Los algoritmos recursivos ofrecen soluciones estructuradas, modulares y elegantemente simples.
+
+*Factible de utilizar recursividad*
+- Para simplificar el código.
+-Cuando la estructura de datos es recursiva
+ejemplo : árboles
+
+*No factible utilizar recursividad*
+- Cuando los métodos usen arreglos largos.
+- Cuando el método cambia de manera impredecible de campos.
+- Cuando las iteraciones sean la mejor opción.
+
+```javascript
+function recursiva(arr){
+    if(arr.length != 0){
+        const firstNum = arr[0];
+        console.log(firstNum);
+        arr.shift();
+        return recursiva(arr);
+    }
+}
+```
