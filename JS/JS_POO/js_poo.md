@@ -93,3 +93,43 @@ El atributo *__proto__ *se hereda a partir de los prototipo por defecto de JavaS
 El atributo* __proto__* también se hereda a los objetos, ya que éstos son a la vez instancias de algún prototipo creado por el desarrollador y del prototipo Object.
 
 [Qué es un objeto en JS](https://platzi.com/clases/2332-javascript-poo/38619-que-es-un-objeto-en-javascript/ "Qué es un objeto en JS")
+
+### Abstracción 
+Es cuando separamos los datos de un objeto para generar un molde.
+
+**Abstracción es:**
+
+- Enfocarnos en la información relevante.
+
+- Separar la información central de los detalles secundarios.
+
+### Encapsulamiento
+
+Es guardar, proteger, guardar o limitar el acceso de cierto atributos y/o propiedades en nuestros prototipos y objetos.
+
+Cuando hablamos de **encapsulamiento** hablamos de:
+
+- Esconder métodos y atributos
+
+- No permitir la alteración de métodos y atributos 
+
+*Encapsulamiento en JavaScript*
+
+- No permitir la alteración de métodos y atributos 
+
+*Formas de aplicar encapsulamiento en JavaScript*
+
+- Getters y setters 🖐
+
+- Namespaces 🙂
+
+- Object.defineProperties 🎈
+
+- Módulo de ES6 🤝 
+
+- Ver ES13 #
+
+### Herencia
+La **herencia** nos permite crear nuevas clases a partir de otras, la clase principal es llamada la* Superclase*, esta va a ser la clase general ,el molde general. Cuando veamos que tenemos elementos repetidos comenzamos a crear una abstracción, creamos una clase general que nos permita crear nuevas clases.
+
+Tenemos las *subclases*, que son las que heredan atributos y métodos de las Superclases, podríamos decir que son las clases hijas. En las clases hijas ponemos los atributos que solo ellas van a utilizar, que son solo características de ellas.
