@@ -46,3 +46,29 @@ const andres = new Student(
         "Curso de POO"
     ],
 );
+
+// Utilizando como parámetro objetos
+// Prototipos con la sintaxis de clases
+class Student2 {
+    constructor({
+      name,
+      cursosAprobados = [],
+      age,
+      email,
+    }) {
+      this.name = name;
+      this.email = email;
+      this.age = age;
+      this.cursosAprobados = cursosAprobados;
+    }
+  
+    aprobarCurso(nuevoCursito) {
+      this.cursosAprobados.push(nuevoCursito);
+    }
+  }
+  
+  const maria = new Student2({
+    name: "Maria",
+    age: 28,
+    email: "Maria@gmail.com",
+  }); 
