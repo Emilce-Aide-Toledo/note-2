@@ -175,3 +175,18 @@ Tipos:
 ***Polimorfismo Paramétrico:*** El polimorfismo paramétrico es la capacidad para definir varias funciones utilizando el mismo nombre, pero usando parámetros diferentes (nombre y/o tipo).
 
 ***Polimorfismo de Inclusión (JS):*** La habilidad para redefinir por completo el método de una superclase en una subclase.
+
+
+## Static: atributos y métodos estáticos en JavaScript
+Si quieres tener acceso a una variable o método sin tener que crear instancias de una clase usa la palabra *static* antes de crear tu variable o método.
+```javascript
+class saludar {
+    static saludar =  'hola';
+    static metodoSaludar () {
+        return 'hola2'
+    }
+}
+console.log(saludar.saludar) //hola
+console.log(saludar.metodoSaludar()) //hola2
+```
+
