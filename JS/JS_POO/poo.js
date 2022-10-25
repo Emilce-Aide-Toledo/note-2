@@ -98,6 +98,15 @@ class Student2 {
       this.approvedCourses = approvedCourses;
       this.learningPaths  = learningPaths;
     }
+
+    publicarComentario(commentContent){
+      const comment = new Comment ({
+        content: commentContent,
+        studentName: this.name,
+      });
+
+      comment.publicar();
+    }
   };
 
   const emilce = new Student3({
@@ -112,9 +121,13 @@ class Student2 {
   constructor({
     name, 
     classes = [],
+    isFree = false,
+    lang = "spanish",
   }){
     this._name = name;
     this.classes = classes;
+    this.isFree = isFree;
+    this.lang = lang;
   }
 
   get name() {
@@ -136,3 +149,139 @@ class Student2 {
 
  curso1.name;
  curso1.name = "Flexbox";
+
+ 
+//  class Course2 {
+//   #name;
+
+//   constructor({
+//     name,
+//     classes = []
+//   }) {
+//     this.#name = name;
+//     this.classes = classes;
+//   }
+
+//   get name() {
+//     return this.#name;
+//   }
+
+//   set name(nuevoNombrecito) {
+//     if (nuevoNombrecito === 'Curso Malito de Programación Básica') {
+//       console.error('Web... no');
+//     } else {
+//       this.#name = nuevoNombrecito;
+//     }
+//   }
+// }
+
+//Herencia en JavaScript
+class FreeStudent extends Student3{
+  constructor(props){
+    super(props);
+  }
+
+  approvedCourses(newCourse) {
+    if(newCourse.isFree){
+      this.approvedCourses.push(newCourse)
+    }else{
+      console.warn("Solo puedes tomar cursos gratis");
+    }
+  }
+};
+
+class BasicStudent extends Student3{
+  constructor(props){
+    super(props)
+  }
+
+  approvedCourses(newCourse) {
+    if(newCourse.lang !== "english"){
+      this.approvedCourses.push(newCourse)
+    }else{
+      console.warn("No puedes tomar cursos en Inglés");
+    }
+  }
+};
+
+class ExpertStudent extends Student3{
+  constructor(props){
+    super(props);
+  }
+
+  approvedCourses(newCourse){
+    this.approvedCourses.push(newCourse);
+  }
+};
+
+const cursoProgramacion = new Course({
+  name: "SQL",
+  isFree: true,
+});
+
+const cursoReact = new Course({
+  name: "React",
+  lang: "english",
+});
+
+const aide = new BasicStudent({
+  name: "Aide",
+  username:"aidi",
+  email: "aidi@gmail.com",
+  twitter: "aidi",
+});
+
+const katy = new FreeStudent({
+  name: "Katy",
+  username:"Katty",
+  email: "Katy@gmail.com",
+  twitter: "Katt",
+});
+
+//Polimorfismo
+
+class Comment {
+  constructor({
+    content,
+    studentName,
+    studentRole = "estudiante",
+  }){
+    this.content = content;
+    this.studentName = studentName;
+    this.studentRole = studentRole;
+    this.likes = 0;
+  }
+
+  publicar(){
+    console.log(this.studentName + "(" + this.studentRole + ")");
+    console.log(this.likes + " likes");
+    console.log(this.content);
+  }
+};
+
+class TeacherStudent extends Student3{
+  constructor(props){
+    super(props);
+  }
+
+  approvedCourses(newCourse){
+    this.approvedCourses.push(newCourse);
+  }
+
+  publicarComentario(commentContent){
+    const comment = new Comment ({
+      content: commentContent,
+      studentName: this.name,
+      studentRole: "profesor",
+    });
+
+    comment.publicar();
+  }
+};
+
+const diego = new TeacherStudent({
+  name: "Diego",
+  username: "diego3",
+  email: "diego3@gmail.com",
+  instagram: "dgyMaster"
+});

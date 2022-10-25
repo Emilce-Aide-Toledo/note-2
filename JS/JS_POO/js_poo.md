@@ -133,3 +133,45 @@ Cuando hablamos de **encapsulamiento** hablamos de:
 La **herencia** nos permite crear nuevas clases a partir de otras, la clase principal es llamada la* Superclase*, esta va a ser la clase general ,el molde general. Cuando veamos que tenemos elementos repetidos comenzamos a crear una abstracción, creamos una clase general que nos permita crear nuevas clases.
 
 Tenemos las *subclases*, que son las que heredan atributos y métodos de las Superclases, podríamos decir que son las clases hijas. En las clases hijas ponemos los atributos que solo ellas van a utilizar, que son solo características de ellas.
+
+### Extra
+Para hacer la herencia usando la sintaxis de prototipos podemos hacer lo siguiente:
+ 
+Suponiendo que ya tenemos creada nuestra superclase (Student). Vamos a crear una clase (FreeStudent) que va a pasar los parámetros de inicialización al constructor de la superclase, para esto hacemos uso de la función call().
+
+```javascript
+function FreeStudent(props) {
+  Student.call(this, props);
+}
+```
+Le pasamos como primer atributo el contexto de ejecución de nuestra nueva “clase” y como segundo parámetro los props, que son estas propiedades que recibiremos de inicialización.
+ 
+Después de esto, clonamos el prototipo de nuestra superclase en el prototipo de nuestra subclase:
+```javascript
+FreeStudent.prototype = Object.create(Student.prototype);
+```
+Por último, le agregamos cualquier función extra que deseemos agregar a la subclase:
+```javascript
+FreeStudent.prototype.approveCourse = function (newCourse) {
+  if (newCourse.isFree) {
+    this.approvedCourses.push(newCourse);
+  } else {
+    console.warn(`Lo sentimos, ${this.name}, sólo puedes tomar cursos gratis`);
+  }
+}
+```
+ 
+Fuente: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+
+
+### Polimorfismo
+
+ Permite a nuestras subclases cambiar o anular los comportamientos de los métodos y atributos del prototipo madre, de la clase madre. Aunque herede las propiedades, el polimorfismo permite cambiar su comportamiento.
+
+Tipos:
+
+***Polimorfismo de Sobrecarga:*** ocurre cuando existen métodos con el mismo nombre y funcionalidad similar en clases totalmente independientes entre ellas.
+
+***Polimorfismo Paramétrico:*** El polimorfismo paramétrico es la capacidad para definir varias funciones utilizando el mismo nombre, pero usando parámetros diferentes (nombre y/o tipo).
+
+***Polimorfismo de Inclusión (JS):*** La habilidad para redefinir por completo el método de una superclase en una subclase.
