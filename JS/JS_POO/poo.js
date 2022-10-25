@@ -106,3 +106,33 @@ class Student2 {
     email: "emi@gmail.com",
     twitter: "emiai",
   });
+
+  //Getters y setters 
+ class Course {
+  constructor({
+    name, 
+    classes = [],
+  }){
+    this._name = name;
+    this.classes = classes;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(newName){
+    if(newName === "CSS"){
+     console.error("No se puede agregar ese nombre")
+    } else {
+    this._name = newName;
+    }
+  }
+ };
+
+ const curso1 = new Course({
+   name: "CSS Grid",
+ });
+
+ curso1.name;
+ curso1.name = "Flexbox";
