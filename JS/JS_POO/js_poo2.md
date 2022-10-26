@@ -38,6 +38,7 @@ const obj3 = Object.assign({}, obj1);
 const obj4 = Object.create(obj1);
 
 ```
+---
 
 ### Qué es JSON.parse y JSON.stringify
 ```javascript
@@ -91,6 +92,7 @@ Convierte tipos de datos no soportados en soportados, como infinity y NaN en nul
 Los tipos de datos Date serán parseados como strings, no como Date
 No es tan rápido y eficiente.
 
+---
 
 ## Qué es recursividad
 Es cuando una función se llama a sí misma. 
@@ -121,6 +123,7 @@ function recursiva(arr){
     }
 }
 ```
+---
 ## Deep copy con recursividad
 
 Se dice que el objeto tiene un Deep Copy cuando cada propiedad del objeto apunta a una copia separada, incluso si la propiedad apunta a un objeto (valores de referencia). Se crea una copia separada del objeto de referencia para el objeto de destino. En caso de copia profunda, las propiedades de referencia del objeto de origen y las propiedades de referencia del objeto de destino apuntan a diferentes ubicaciones de memoria.
@@ -222,4 +225,186 @@ carlos.name = "Carlitos";
 
 Object.isSealed(carlos); // Nos muestra con True o False si todas las propiedades estan selladas
 Object.isFrozen(carlos); // Nos muestra con True o False si todas las propiedades estan congeladas
+```
+---
+### Object.freeze()
+
+Este método congela un objeto que sea pasado. Es decir:
+
+- Impide que se le agreguen nuevas propiedades
+- Impide que sean eliminas propiedades ya existentes
+- Impide que sus las propiedades internas (writable, - enumerable y configurable) sean modificadas
+### Object.seal()
+
+Este método sella un objeto que sea pasada. Es decir:
+
+- Impide que nuevas propiedades sean agregadas
+- Cambia en todas las propiedades configurable: false, con lo que impide que sean borradas
+- Las propiedades aún puede ser modificadas, ya que writable esta true
+### Object.isSealed()
+
+Este método determina si un objeto se encuentra sellado. 
+Devuelve un valor boolean. Es decir:
+
+- El objeto no es extendible, por lo cual no se pueden agregar más propiedades
+- Todas sus propiedades no se pueden configurar, por lo tanto no son removibles
+
+### Object.isFrozen()
+
+Este método determina si un objeto se encuentra congelado. Devuelve un valor boolean. Es decir:
+
+- El objeto no es extendible, por lo cual no se pueden agregar más propiedades
+- Todas sus propiedades no se pueden configurar, por lo tanto no son removibles
+- Todas sus propiedades no pueden ser reescritas
+---
+## Factory pattern y RORO
+Ver: https://www.freecodecamp.org/news/elegant-patterns-in-modern-javascript-roro-be01e7669cbd/
+
+```javascript
+/* Codigo Deep Copy */
+
+// Requerimientos de parametros obligatorios
+function requiredParam(param){
+    throw new Error(param + " Campo obligatorio");
+}
+
+// Fabrica de estudiantes
+function createStudent({
+    name = requiredParam("name"),
+    email = requiredParam("email"),
+    age,
+    twitter,
+    instagram,
+    facebook,
+    approvedCourses = [],
+    learningPaths = [],
+} = {}) {
+    return {
+        name,
+        age,
+        email,
+        approvedCourses,
+        learningPaths,
+        socialMedia: {
+            twitter,
+            instagram,
+            facebook,
+        },
+    };
+}
+
+const carlos = createStudent({
+    name: 'Carlito',
+    age: 20,
+    email: 'carlito@mazzarolito.com',
+    twitter: 'carlitosmzz',
+}); // {}
+```
+---
+## Module pattern y namespaces: propiedades privadas en JavaScript
+Ver: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields
+
+### Object.defineProperty
+Podemos usar el Object.defineProperty() para crear la variable publica o privada
+```javascript
+function requiredParam(param) {
+  throw new Error(param + " es obligatorio");
+}
+
+function createStudent({
+  name = requiredParam("name"),
+  email = requiredParam("email"),
+  age,
+  twitter,
+  instagram,
+  facebook,
+  approvedCourses = [],
+  learningPaths = [],
+} = {}) {
+  const private = {
+    "_name": name,
+  };
+
+  const public = {
+    email,
+    age,
+    approvedCourses,
+    learningPaths,
+    socialMedia: {
+      twitter,
+      instagram,
+      facebook,
+    },
+    readName() {
+      return private["_name"];
+    },
+    changeName(newName) {
+      private["_name"] = newName;
+    },
+  };
+
+  Object.defineProperty(public, "readName", {
+    writable: false,
+    configurable: false,
+  });
+  Object.defineProperty(public, "changeName", {
+    writable: false,
+    configurable: false,
+  });
+
+  return public;
+}
+
+const juan = createStudent({ email: "juanito@frijoles.co", name: "Juanito" });
+```
+---
+## Getters y setters
+Los Getters y setters son métodos de acceso, lo que significa que generalmente son una interfaz publica para cambiar miembros de las clases privadas.
+```javascript
+function requiredParam(param) {
+  throw new Error(param + " es obligatorio");
+}
+
+function createStudent({
+  name = requiredParam("name"),
+  email = requiredParam("email"),
+  age,
+  twitter,
+  instagram,
+  facebook,
+  approvedCourses = [],
+  learningPaths = [],
+} = {}) {
+  const private = {
+    "_name": name,
+  };
+
+  const public = {
+    email,
+    age,
+    approvedCourses,
+    learningPaths,
+    socialMedia: {
+      twitter,
+      instagram,
+      facebook,
+    },
+    get name() {
+      return private["_name"];
+    },
+    set name(newName) {
+      if (newName.length != 0) {
+        private["_name"] = newName;
+      } else {
+        console.warn("Tu nombre debe tener al menos 1 caracter");
+      }
+    },
+ 
+  };
+
+
+  return public;
+}
+
+const juan = createStudent({ email: "juanito@frijoles.co", name: "Juanito" });
 ```
