@@ -413,4 +413,325 @@ const juan = createStudent({ email: "juanito@frijoles.co", name: "Juanito" });
 
  El duck typing es la forma de progamar donde identificamos a nuestros elementos dependiendo de los métodos y atributos que tengan por dentro.
 
- 
+ ---
+ ## Duck typing
+
+ El duck typing es la forma de progamar donde identificamos a nuestros elementos dependiendo de los métodos y atributos que tengan por dentro.
+```javascript
+ function isObject(subject) {
+  return typeof subject == "object";
+}
+
+function isArray(subject) {
+  return Array.isArray(subject);
+}
+
+function deepCopy(subject) {
+  let copySubject;
+
+  const subjectIsObject = isObject(subject);
+  const subjectIsArray = isArray(subject);
+
+  if (subjectIsArray) {
+    copySubject = [];
+  } else if (subjectIsObject) {
+    copySubject = {};
+  } else {
+    return subject;
+  }
+
+  for (key in subject) {
+    const keyIsObject = isObject(subject[key]);
+
+    if (keyIsObject) {
+      copySubject[key] = deepCopy(subject[key]);
+    } else {
+      if (subjectIsArray) {
+        copySubject.push(subject[key]);
+      } else {
+        copySubject[key] = subject[key];
+      }
+    }
+  }
+
+  return copySubject;
+}
+
+
+function requiredParam(param) {
+  throw new Error(param + " es obligatorio");
+}
+
+function createLearningPath({
+  name = requiredParam("name"),
+  courses = [],
+}) {
+  const private = {
+    "_name": name,
+    "_courses": courses,
+  };
+
+  const public = {
+    get name() {
+      return private["_name"];
+    },
+    set name(newName) {
+      if (newName.length != 0) {
+        private["_name"] = newName;
+      } else {
+        console.warn("Tu nombre debe tener al menos 1 caracter");
+      }
+    },
+    get courses() {
+      return private["_courses"];
+    },
+  };
+
+  return public;
+}
+
+function createStudent({
+  name = requiredParam("name"),
+  email = requiredParam("email"),
+  age,
+  twitter,
+  instagram,
+  facebook,
+  approvedCourses = [],
+  learningPaths = [],
+} = {}) {
+  const private = {
+    "_name": name,
+    "_learningPaths": learningPaths,
+  };
+
+  const public = {
+    email,
+    age,
+    approvedCourses,
+    socialMedia: {
+      twitter,
+      instagram,
+      facebook,
+    },
+    get name() {
+      return private["_name"];
+    },
+    set name(newName) {
+      if (newName.length != 0) {
+        private["_name"] = newName;
+      } else {
+        console.warn("Tu nombre debe tener al menos 1 caracter");
+      }
+    },
+    get learningPaths() {
+      return private["_learningPaths"];
+    },
+    set learningPaths(newLP) {
+      if (!newLP.name) {
+        console.warn("Tu LP no tiene la propiedad name");
+        return;
+      }
+
+      if (!newLP.courses) {
+        console.warn("Tu LP no tiene courses");
+        return;
+      }
+
+      if (!isArray(newLP.courses)) {
+        console.warn("Tu LP no es una lista (*de cursos)");
+        return;
+      }
+      
+      private["_learningPaths"].push(newLP);
+    },
+  };
+
+  return public;
+}
+
+const juan = createStudent({ email: "juanito@frijoles.co", name: "Juanito" });
+```
+---
+### Instance Of en JS con instancias y prototipos
+Convertiremos nuestras fabricas de objetos en prototipos y gracias a crear prototipos, utilizaremos el instance of para ver si ej nuestros learning paths realmente fueron creados con el prototipo learningpath, es decir, si realmete son instancias de este prototipo o en realidad son imitadores.
+```
+RECORDA que para crear prototipos, debemos usar la palabra this y new
+```
+Pondre como funciona el codigo completo y luego lo ire explicando de a poco.
+
+```javascript
+function LearningPath({
+    name = requiredParam("name"),
+    courses = [],
+  }) {
+      this.name = name;
+      this.courses = courses;
+
+  }
+  
+  function Student({
+    name = requiredParam("name"),
+    email = requiredParam("email"),
+    age,
+    twitter,
+    instagram,
+    facebook,
+    approvedCourses = [],
+    learningPaths = [],
+  } = {}) {
+
+    this.name = name;
+    this.name = name;
+    this.email = email;
+    this.age = age;
+    this.approvedCourses = approvedCourses;
+    this.socialMedia = {
+        twitter,
+        instagram,
+        facebook,
+    };    
+
+    if (isArray(learningPaths)) {
+      this.learningPaths = [];
+/* lo que hago con if (isArray(learningPaths)) {
+      this.learningPaths = []; es entenderm yo pido el argumento learningPaths, la pc lo almacena en el objeto que esta ahi arriba en student({}),luego de eso valido todos los datos ejempllo this.name = name; ahora me queda validar los learningPaths y le digo, che pibe, no me intersa lo que tenes adentro, te voy a validar que sos un array, uh si, sos un array, pero se que sos un array vavio, por lo tanto ire veindo con un bulce CADA UNA DE TOS PROPIEDADES, y las que cumplan ser instancia de LEARNING PATHS te lo metere con un push.*/      
+
+      for (learningPathIndex in learningPaths) {
+        if (learningPaths[learningPathIndex] instanceof LearningPath) {
+          this.learningPaths.push(learningPaths[learningPathIndex]);
+        }
+      }
+    }
+
+  }
+  
+  const escuelaWeb = new LearningPath({ name: "Escuela de js" });
+  const escuelaDataScience = new LearningPath({ name: "Escuela de data science" });
+
+  const juan = new Student({ 
+    email: "juanito@frijoles.co",
+    name: "Juanito",
+    learningPaths: [
+      escuelaWeb,
+      escuelaDataScience,
+  ]
+  });
+```
+1.Como funciona el ```instanceof``` ⇒ Es importante saber que es un metodo que devolvera true o false.
+```javascript
+//Aca simplemente declare 2 prototipos, el LearningPath, y Student.
+
+function LearningPath({
+    name = requiredParam("name"),
+    courses = [],
+  }) {
+      this.name = name;
+      this.courses = courses;
+
+  }
+  
+  function Student({
+    name = requiredParam("name"),
+    email = requiredParam("email"),
+    age,
+    twitter,
+    instagram,
+    facebook,
+    approvedCourses = [],
+    learningPaths = [],
+  } = {}) {
+
+    this.name = name;
+    this.name = name;
+    this.email = email;
+    this.age = age;
+    this.approvedCourses = approvedCourses;
+    this.socialMedia = {
+        twitter,
+        instagram,
+        facebook,
+    };    
+//Que sucede aca? Facil, la idea es que yo le pido toda la data al usuario de su ruta, y le pido en los argumentos de la funcion Student que me pase un     parametro de lo que sera su learningPaths, yo solo SE LO PIDO, pero NO LO TRABAJO, como a los otros.
+```
+```javascript
+if (isArray(learningPaths)) {
+      this.learningPaths = [];      
+
+      for (learningPathIndex in learningPaths) {
+        if (learningPaths[learningPathIndex] instanceof LearningPath) {
+          this.learningPaths.push(learningPaths[learningPathIndex]);
+        }
+      }
+    }
+  }
+//Genial! ya el usuario nos debio pasar sus parametro learningpath,entonces esste codigo trbajare este parametro,si? bien lo primero que haremos con ese dato que no paso es decir con learningPaths, es verificar si es un array, es un   array? si lo es, entra a lo que sucede dentro, y lo primero que se hace es el  this.learningPaths = []; este afirmara que es un array, es neceario para guardar la data. luego de eso entramos a un bucle, un bucle bellisimo. Que hara este? facil, el con la variable learningPathIndex, agarrara cada dato de el array learningPaths, de esta manera => learningPaths[learningPathIndex]. por cada interracion esto learningPaths[learningPathIndex] cambiara, ya que solo es una variable del array. ahora por cada elemento, se vera si son instancias del LearningPath, que es nuestro prototipo. Por cada vez que ses verdadero, meteremos en el array learningPaths, esto learningPaths[learningPathIndex]. es decir, el elemento del array que respete tal condicion que hemos escrito.
+
+```
+---
+### Atributos y métodos privados en prototipos
+Para asignar los métodos y atributos privados en Clases actualmente  seran con un #
+
+- en la clase
+Escondemos la propiedad
+```javascript
+const private = {
+        _learningPaths: []
+    }
+```
+Modificamos el metodo .map con el que validabamos y empujabamos cada elemento que viniera dentro learningPaths, para que ahora haga uso de un setter que se utilice al llamar a la propiedad.
+```javascript
+if( !isArray(learningPaths) ){
+        throw new Error('LP no es una lista valida')
+    } else{
+        learningPaths.map(elm => {
+            this.learningPaths = elm
+        })
+    }
+```
+Por último, declaramos una propiedad learningPath con el getter y setter para acceder a la propieda oculta, y dentro del setter hacemos la validación (que antes haciamos dentro del .map) para saber si es instancia del prototipo LearningPath
+```javascript
+Object.defineProperty(this, "learningPaths", {
+        get(){
+            return private._learningPaths
+        },
+        set(newLp){
+            // debugger;
+            if(newLp instanceof LearningPath){
+                private._learningPaths.push(newLp)
+            } else{
+                console.warn(`${newLp} no es una LP valida`)
+            }
+        }
+    })
+```
+Y listo, sin enredos, sin un monton de scroll, sin jergas adolescentes innecesarias, simplemente claro y consiso.
+El codigo completo queda así
+```javascript
+const private = {
+        _learningPaths: []
+    }
+
+    Object.defineProperty(this, "learningPaths", {
+        get(){
+            return private._learningPaths
+        },
+        set(newLp){
+            // debugger;
+            if(newLp instanceof LearningPath){
+                private._learningPaths.push(newLp)
+            } else{
+                console.warn(`${newLp} no es una LP valida`)
+            }
+        }
+    })
+
+    if( !isArray(learningPaths) ){
+        throw new Error('LP no es una lista valida')
+    } else{
+        learningPaths.map(elm => {
+            this.learningPaths = elm
+        })
+    }
+```
+---
