@@ -408,3 +408,9 @@ function createStudent({
 
 const juan = createStudent({ email: "juanito@frijoles.co", name: "Juanito" });
 ```
+---
+ ## Duck typing
+
+ El duck typing es la forma de progamar donde identificamos a nuestros elementos dependiendo de los métodos y atributos que tengan por dentro.
+
+ 
