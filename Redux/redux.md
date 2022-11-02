@@ -12,3 +12,4 @@ Nuestra UI va a activar una action, esta action va a ejecutar un reducer para mo
 
 https://www.youtube.com/watch?v=Ko7avuco-Gw
 
+https://css-tricks.com/learning-react-redux/
