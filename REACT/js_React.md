@@ -917,3 +917,100 @@ export default App;
 **Cambio dinámico de clases**
 
 Una de las grandes ventajas de React, es que podemos utilizar los lógicos ```&&``` y ```||``` para jugar con nuestras clases muy fácilmente, y dar estilos dependiendo de la clase que esté activa, esto lo aplicamos cuando está completado o no nuestro TODO.
+
+## Manejo de eventos
+---
+Manejar eventos en React es muy similar a manejar eventos en el DOM, solo necesitamos pasarle una propiedad on + evento, por ejemplo: ```onClick```, ```onChange```, ```onMouseOver```, que será igual a una función en la que estará el código que se ejecutará cuando ocurra dicho evento.
+
+A diferencia de los eventos del DOM, para manejar eventos en React tenemos unas pequeñas diferencias en la sintaxis:
+
+- En React los eventos son nombrados usando camelCase.
+- Tenemos que pasar una función, ya sea en línea o almacenada en una variable.
+- No puedes regresar false para prevenir el comportamiento por defecto, debes utilizar preventDefault explícitamente.
+
+**HTML**
+```html
+<button onclick="click()"></button>
+```
+
+**React**
+```html
+<button onClick={click}></button>
+```
+**Pasando argumentos a escuchadores de eventos**
+
+En React no tenemos que ejecutar el código nosotros, React ya maneja esto por debajo, solo es necesario pasar una función, React solito la ejecutará cuando ocurra el evento que estemos escuchando.
+
+Si necesitamos pasar argumentos a nuestras funciones, necesitamos encerrar nuestra función dentro de otra función, esto porque al pasarle argumentos a una función la estamos ejecutando, veamos un ejemplo:
+```javascript
+function CreateTodoButton(props) {
+  const onClickButton = (msg) => {
+    alert(msg);
+  };
+  
+  return (
+    <>
+        {/* ✅ */}
+        <button
+          className="CreateTodoButton"
+          onClick={() => onClickButton('Aquí se debería abrir el modal')}
+        >
+          +
+        </button>
+        {/* ❌ */}
+        <button
+          className="CreateTodoButton"
+          onClick={onClickButton('Esta función se ejecuta al inicio, no al presionar el botón'}
+        >
+          +
+        </button>
+    </>
+  );
+}
+```
+
+**Es importante siempre pasar una función.**
+
+Dentro de estos eventos también puedes recibir como parámetro la información del evento, en donde puedes encontrar propiedades muy interesantes, como por ejemplo, el valor de algún input, con event.target.value.
+```javascript
+function TodoSearch() {
+  const onSearchValueChange = (event) => {
+    console.log(event.target.value);
+  };
+  
+  return (
+    <input
+      className="TodoSearch"
+      placeholder="Cebolla"
+      onChange={onSearchValueChange}
+    />
+  );
+}
+```
+
+¿Por qué a veces enviamos arrow functions y por qué otras veces no?, aquí te lo explico:
+
+Cualquier evento recibe sí o sí una función, es decir, debemos mandarle sí o sí una función para que React internamente pueda ejecutarla en cuanto dicho eventop ocurre.
+
+El asunto, es que tiene que ser sí o sí una función que React pueda ejecutar, por eso no podemos mandar directamente un ```console.log()``` ni un ```alert()```, porque aunque ambos son funciones, nosotros estamos ejecutándolas directamente al ponerles los paréntesis, pero nosotros no debemos ejecutarlas, nosotros solo debemos mandarlas y ya React se encargará de ejecutarlas.
+
+Es por eso que mandamos arrow functions, porque estas son funciones que React puede ejecutar cuando quiera, y pues dentro de esas arrow functions está el código que queremos ejecutar cuando el evento suceda.
+
+```javascript
+onClick={() => alert("React sí puede ejecutar esta arrow function ")}
+```
+
+Sin embargo, recordando que los eventos reciben funciones, yo puedo crear una variable que dentro guarde una función, por ejemplo:
+
+```javascript
+const adentroTengoUnaFuncion = () => {
+    console.log("Hola");
+    console.log("Soy una función que está siendo guardada dentro de una variable UwU");
+}
+```
+
+Yo puedo ejecutar esta función sin problemas de esta forma adentroTengoUnaFuncion(), pero también puedo mandarsela a React para que él lo ejecute cuando quiera (en este caso, cuando el evento suceda):
+```javascript
+onClick={adentroTengoUnaFuncion}
+```
+Nota como aquí mandamos la función sin paréntesis, esto es porque en el momento en el que le ponemos paréntesis seríamos nosotros quienes ejecutan la función, pero recuerda que nosotros no debemos ejecutar la función, sino React es quien tiene que ejecutarla. ¿Por qué? Pues porque si la ejecutamos nosotros, esta se va a ejecutar justo en el momento que esa línea de código sea leída por nuestra computadora, y nosotros no queremos eso, nosotros queremos que nuestra función se ejecute únicamente cuando el evento suceda, por eso la mandamos sin paréntesis, para que React pueda ejecutarla cuando dicho evento ocurra.
