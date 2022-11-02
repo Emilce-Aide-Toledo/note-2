@@ -482,3 +482,216 @@ function App() {
 
 export default App;
 ```
+
+## Manejo de efectos
+---
+El hook de efecto en react nos permite ejecutar un pedazo de código cada vez que necesitemos, a lo largo de la vida de nuestro componente, también cuando se cumplan ciertas condiciones.
+
+Algo curioso e importante de saber es que el código dentro de nuestro hook de efecto no se ejecuta como el resto del código, se ejecutará inicialmente justo antes de hacer el renderizado del HTML que resulte de nuestro código de React.
+
+**Condiciones para nuestro hook de efecto**
+
+El hook de React, useEffect, puede recibir dos argumentos:
+
+- Función que se ejecutará en cada fase del ciclo de vida de nuestro componente.
+
+- Las condiciones de cuándo debe ejecutarse esta función dentro de un arreglo, cada que se actualice cualquier dato que le pasemos a este arreglo, se volverá a ejecutar nuestra función.
+```javascript
+React.useEffect(funcion, [dato1, dato2, datoN])
+```
+**Diferentes maneras de actualizar nuestros componentes**
+
+Existen tres diferentes maneras para aplicar el hook de efecto, todas funcionan diferente a la hora de re-renderizar nuestros componentes.
+
+- Sin pasar un arreglo como segundo argumento: useEffect(funcion)
+Cuando no le pasamos un segundo argumento con las condiciones de cuándo se debe re-ejecutar nuestra función, React tomará como condiciones que se debe ejecutar nuestra función todas las veces que ocurra un re-renderizado, y también cada vez que se actualice alguna prop (Si es que el componente recibe alguna).
+
+- Pasando un arreglo vacío: useEffect(funcion, [])
+Cuando pasamos un arreglo vacío, le estás diciendo a React que no hay ninguna condición para volver a ejecutar el código de nuestra función, entonces solamente se ejecutará en el renderizado inicial.
+
+- Pasando un arreglo con datos: useEffect(funcion, [val1, val2, valN])
+Cuando especificas las condiciones dentro del arreglo del segundo parámetro, le estás diciendo a React que ejecute nuestra función en el renderizado inicial y también cuando algún dato del arreglo cambie.
+
+**Simulando una petición a una API**
+
+Dentro de una aplicación web, al trabajar con APIs, existen muchos factores para determinar cuánto tardará en cargar nuestra aplicación, como la velocidad de nuestro internet, la distancia del servidor, etc.
+
+Al trabajar con APIs también debemos tener en cuenta que puede tardar en cargar mucho nuestra aplicación, o incluso puede ocurrir algún error, todo esto lo debemos de manejar para mantener a nuestro usuario informado.
+
+El hook de efecto nos permite saber cuando ya renderizó nuestra aplicación, así podemos mostrar un mensaje de cargando o alguna animación en lo que se completa la petición, también con JavaScript podemos manejar los errores con try y catch, y haciendo uso del hook de estado podemos guardar si está cargando o hubo algún error.
+
+*App/index.js*
+```javascript
+import React from 'react';
+import { AppUI } from './AppUI';
+
+function useLocalStorage(itemName, initialValue) {
+  // Creamos el estado inicial para nuestros errores y carga
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+  const [item, setItem] = React.useState(initialValue);
+  
+  React.useEffect(() => {
+  // Simulamos un segundo de delay de carga 
+    setTimeout(() => {
+      // Manejamos la tarea dentro de un try/catch por si ocurre algún error
+      try {
+        const localStorageItem = localStorage.getItem(itemName);
+        let parsedItem;
+        
+        if (!localStorageItem) {
+          localStorage.setItem(itemName, JSON.stringify(initialValue));
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+        }
+
+        setItem(parsedItem);
+      } catch(error) {
+      // En caso de un error lo guardamos en el estado
+        setError(error);
+      } finally {
+        // También podemos utilizar la última parte del try/cath (finally) para terminar la carga
+        setLoading(false);
+      }
+    }, 1000);
+  });
+  
+  const saveItem = (newItem) => {
+    // Manejamos la tarea dentro de un try/catch por si ocurre algún error
+    try {
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifiedItem);
+      setItem(newItem);
+    } catch(error) {
+      // En caso de algún error lo guardamos en el estado
+      setError(error);
+    }
+  };
+
+  // Para tener un mejor control de los datos retornados, podemos regresarlos dentro de un objeto
+  return {
+    item,
+    saveItem,
+    loading,
+    error,
+  };
+}
+
+function App() {
+  // Desestructuramos los nuevos datos de nustro custom hook
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []);
+  const [searchValue, setSearchValue] = React.useState('');
+
+  const completedTodos = todos.filter(todo => !!todo.completed).length;
+  const totalTodos = todos.length;
+
+  let searchedTodos = [];
+
+  if (!searchValue.length >= 1) {
+    searchedTodos = todos;
+  } else {
+    searchedTodos = todos.filter(todo => {
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      return todoText.includes(searchText);
+    });
+  }
+
+  const completeTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = true;
+    saveTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    saveTodos(newTodos);
+  };
+
+  return (
+    {/* Pasamos los valores de loading y error */}
+    <AppUI
+      loading={loading}
+      error={error}
+      totalTodos={totalTodos}
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      searchedTodos={searchedTodos}
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />
+  );
+}
+
+export default App;
+```
+Una vez sabemos exactamente cuándo una aplicación está cargando y cuándo ha ocurrido algún error, podemos usar esta información para mostrar algo al usuario.
+
+*App/AppUI.js*
+```javascript
+import React from 'react';
+import { TodoCounter } from '../TodoCounter';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { TodoItem } from '../TodoItem';
+import { CreateTodoButton } from '../CreateTodoButton';
+
+// Desescructuramos las nuesvas props
+function AppUI({
+  loading,
+  error,
+  totalTodos,
+  completedTodos,
+  searchValue,
+  setSearchValue,
+  searchedTodos,
+  completeTodo,
+  deleteTodo,
+}) {
+  return (
+    <React.Fragment>
+      <TodoCounter
+        total={totalTodos}
+        completed={completedTodos}
+      />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
+
+      <TodoList>
+        // Mostramos un mensaje en caso de que ocurra algún error
+        {error && <p>Desespérate, hubo un error...</p>}
+        // Mostramos un mensaje de cargando, cuando la aplicación está cargando lo sdatos
+        {loading && <p>Estamos cargando, no desesperes...</p>}
+        // Si terminó de cargar y no existen TODOs, se muestra un mensaje para crear el primer TODO
+        {(!loading && !searchedTodos.length) && <p>¡Crea tu primer TODO!</p>}
+        
+        {searchedTodos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        ))}
+      </TodoList>
+
+      <CreateTodoButton />
+    </React.Fragment>
+  );
+}
+
+export { AppUI };
+```
