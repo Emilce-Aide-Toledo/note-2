@@ -87,3 +87,37 @@ Obviamente, JavaScript ya tiene implementada una clase nativa llamada Array.
 
 https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array
 
+## Strings
+---
+No es una estructura de datos, pero la forma en la que se guarda en memoria es como una estructura de datos.
+
+![](https://i.ibb.co/x74KR3n/string.png)
+
+string = "cadena de caracteres”. 
+
+Si le damos un poco de interpretación a esta traducción podemos deducir que se trata de un carácter ligado a otro y así de forma consecutiva. Son caracteres singulares que están pegados los unos a los otros y en conjunto forman una cadena, de ahí su nombre string.
+
+Para entenderlo mejor, un caracter no es más que un simple símbolo o una simple letra, es decir, la letra “b” sería un caracter.
+
+En otros lenguajes como C++ no existe como tal un tipo de dato String, ahí lo más que existe son caracteres, es decir, en C solo puedes guardar un caracter.
+
+
+## Hash Tables
+---
+![](https://i.ibb.co/YZDmFXP/hast.png)
+
+![](https://i.ibb.co/LtsbtXM/hash2.png)
+
+![](https://i.ibb.co/zZp3DpD/hash3.png)
+
+![](https://i.ibb.co/6YCz40p/hash4.png)
+
+Las Hash Table funcionan similar a un Array, solo que en vez de índices numéricos se tienen índices o keys en caracteres, entonces es necesario una función intermedia que convierte el key en caracteres en índice numérico.
+
+![](https://static.platzi.com/media/user_upload/8-hash-table-fe7079de-8834-41d5-b18f-ce58bae91844.jpg)
+
+A la  “key” que  se le aplica una función que convertirá  a esa key en una referencia de memoria que es en donde se guardarán los valores.
+
+Para obtener de regreso los valores, se debe usar esa misma key, que será convertida de nuevo en un hash con la referencia de memoria en donde están guardados tus valores y te los devolverá.
+
+![](https://media4.giphy.com/media/qvEkzFvba7v6u3vKbo/giphy.gif)
