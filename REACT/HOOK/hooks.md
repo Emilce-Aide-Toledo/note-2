@@ -24,6 +24,111 @@ Así mismo, al trabajar con funciones y no con clases, no tenemos que preocuparn
 **Crear proyecto:**
 
 > npx create-react-app react-hooks
+
 Ejecutar proyecto:
+
 > npm run start
+
+## useState: estado en componentes creados como funciones
+---
+https://www.w3schools.com/react/react_usestate.asp
+
+**useState**
+
+Te permite poder usar variables de estado dentro de componentes funcionales.
+
+El Hook ```useState``` siempre nos retorna un array de dos posiciones. En la primera posición [0] vamos a tener el estado y él la segunda posición [1] vamos a tener la funciona para manipular el estado.
+
+```const [state, setState] = useState(0);```
+
+En este caso hacemos uso de la desestructuración del array una característica de ES6.
+
+```state ⇒ 0```
+
+```setState ⇒ Función que actualiza el estado```
+
+Nuestro estado puede ser de los siguente tipos:
+
+- String
+
+- Boolean
+
+- Number
+
+- Float
+
+- Null
+
+- Undefined
+
+- Object
+
+- Array
+
+## useEffect: olvida el ciclo de vida, ahora piensa en efectos
+---
+https://www.w3schools.com/react/react_useeffect.asp
+
+useEffect nos permite manejar efectos que van a ser transmitidos dentro del componente.
+
+https://dartiles.dev/blog/useeffect-react-hooks-ciclos-de-vida
+
+## useContext: la fusión de React Hooks y React Context
+---
+https://www.w3schools.com/react/react_usecontext.asp
+
+- Conecta todos tus componentes de una manera fácil con React
+- Nos ayuda pasar la información entre componentes
+- Conectar sin necesidad de pasar props y no estar ligados a pasar la información de padre a hijo
+
+![](https://static.platzi.com/media/user_upload/context-b5db2f61-4a66-493e-b57d-99c3ee6dabbb.jpg)
+
+![](https://static.platzi.com/media/user_upload/index-e884a4c1-6f74-4225-9674-c22f27243913.jpg)
+
+![](https://static.platzi.com/media/user_upload/consume-context-bdf2b92e-de62-42c5-a8e0-547de130dc4a.jpg)
+
+## useReducer: como useState, pero más escalable
+---
+https://www.w3schools.com/react/react_usereducer.asp
+
+- Como useState, pero más escalable
+- Implementa una forma más amigables y llena de caracteristicas para trabajar con el estado
+- useReducer a menudo es preferible a useState cuando:
+>se tiene una lógica compleja que involucra múltiples subvalores
+
+>el próximo estado depende del anterior.
+
+*Ejemplo de useReducer*
+```javascript
+const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  );
+}
+```
+
+**useReducer**.- Esta basada en la idea de Redux de tener una función pura que devuelve estados pero que se puede aplicar de una manera local en componentes
+
+https://es.reactjs.org/docs/hooks-reference.html#usereducer
+
+https://platzi.com/blog/usestate-vs-usereducer/
+
 
