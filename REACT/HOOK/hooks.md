@@ -157,3 +157,239 @@ https://kinsta.com/es/blog/react-usecallback/
 
 https://kentcdodds.com/blog/usememo-and-usecallback
 
+
+
+ ## Optimización en React
+ ---
+Optimizar no es una sola técnica o fórmula secreta. 
+
+Optimizar significa analizar los componentes de nuestro proyecto para mejorar el tiempo que tardamos en ejecutar cierto proceso o identificar procesos que estamos ejecutando en momentos innecesarios y le cuestan trabajo a la aplicación.
+
+ **React.memo vs. React.PureComponent**
+
+Vamos a evitar renders innecesarios causados por un mal manejo de las props.
+
+**¿Cómo funciona PureComponent?**
+
+```PureComponent``` es una clase de React muy similar a React.Component, pero por defecto el método ```shouldComponentUpdate``` compara las props nuevas y viejas, si no han cambiado, evita volver a llamar el método render del componente. Esta comparación se llama Shallow Comparison.
+https://github.com/facebook/react/blob/cb7075399376f4b913500c4e377d790138b31c74/packages/shared/shallowEqual.js#L19
+
+Esta lectura te ayudará si quieres profundizar en cómo funcionan los objetos en JavaScript y por qué es necesario implementar shallow comparison en vez de una comparación “normal”: Aprende a Copiar Objetos en JavaScript sin morir en el intento.
+https://platzi.com/blog/como-copiar-objetos-en-javascript-sin-morir-en-el-intento/
+
+**¿Cuándo debo usar React.PureComponent?**
+
+En este ejemplo práctico crearemos 3 componentes, un papá y dos hijos. El componente padre tiene un estado con dos elementos, count y canEdit. El padre tiene dos funciones que actualizan cada elemento del estado. Y cada elemento del estado se envía a un componente hijo diferente.
+
+**Componente padre (App):**
+```javascript
+class App extends React.Component {
+  constructor(props) {
+      super(props);
+
+      this.state = { count: 1, canEdit: true };
+    }
+    
+    render() {
+        console.log("Render App");
+
+        const toggleCanEdit = () => {
+            console.log("Click al botón de toggleCanEdit");
+            this.setState(({ canEdit: oldCanEdit }) => {
+              return { canEdit: !oldCanEdit };
+            });
+        };
+
+        const countPlusPlus = () => {
+          console.log("Click al botón de counter");
+          this.setState((prevState) => {
+            return { count: prevState.count + 1 };
+          });
+        };
+
+        return (
+            <>
+              <button onClick={countPlusPlus}>Counter +1</button>
+              <Counter count={this.state.count} />
+
+              <button onClick={toggleCanEdit}>Toggle Can Edit</button>
+              <Permissions canEdit={this.state.canEdit} />
+            </>
+        );
+    }
+}
+```
+**Componente hijo (counter):**
+```javascript
+class Counter extends React.Component {
+    render() {
+        console.log("Render Counter")
+        const { count } = this.props;
+ 
+        return (
+            <form>
+                <p>Counter: {count}</p>
+            </form>
+        );
+    }
+}
+```
+**Componente hijo (permisos):**
+```javascript
+class Permissions extends React.Component {
+    render() {
+        console.log("Render Permissions")
+        const { canEdit } = this.props;
+ 
+        return (
+            <form>
+                <p>El usuario {canEdit ? "" : "no"} tiene permisos de editar...</p>
+            </form>
+        );
+    }
+}
+```
+Si pruebas este código en el navegador, podrás darte cuenta de que, sin importar en qué botón demos clic, todos los componentes se vuelven a renderizar.
+
+![](https://static.platzi.com/media/user_upload/Screen%20Shot%202020-11-09%20at%2010.06.48%20PM-69fa2774-b1d5-4f4e-915c-29558de043d2.jpg)
+
+Este error puede ser muy grave. La prop canEdit no tiene ninguna conexión con el componente Counter ni la prop count con el componente Permissions, pero, aún así, si cualquiera de las dos cambia, los 3 componentes se vuelven a renderizar.
+
+Afortunadamente podemos arreglarlo/optimizarlo cambiando ```React.Component``` por ```React.PureComponent```.
+```javascript
+class App extends React.PureComponent { /* … */ }
+class Counter extends React.PureComponent { /* … */ }
+class Permissions extends React.PureComponent { /* … */ }
+
+```
+![](https://static.platzi.com/media/user_upload/Screen%20Shot%202020-11-09%20at%2010.12.42%20PM-61fb80b7-91a8-4dfb-ad64-1fa9d9829cda.jpg)
+
+**¿Cómo funciona y cuándo debo usar React.memo?**
+
+Si useEffect es el “reemplazo” del ciclo de vida en componentes creados como funciones con React Hooks, React.memo es el “reemplazo” de PureComponent.
+
+Convirtamos el ejemplo anterior a funciones con React Hooks:
+```javascript
+const App = function() {
+  console.log("Render App");
+
+  const [count, setCount] = React.useState(1);
+  const [canEdit, setCanEdit] = React.useState(true);
+
+  const countPlusPlus = () => {
+    console.log("Click al botón de counter");
+    setCount(count + 1);
+  };
+
+  const toggleCanEdit = () => {
+      console.log("Click al botón de toggleCanEdit");
+      setCanEdit(!canEdit);
+  };
+
+  return (
+    <>
+      <button onClick={countPlusPlus}>Counter +1</button>
+      <Counter count={count} />
+
+      <button onClick={toggleCanEdit}>Toggle Can Edit</button>
+      <Permissions canEdit={canEdit} />
+    </>
+  );
+}
+
+const Permissions = function({ canEdit }) {
+  console.log("Render Permissions")
+
+  return (
+      <form>
+          <p>Can Edit es {canEdit ? "verdadero" : "falso"}</p>
+      </form>
+  );
+}
+
+const Counter = function({ count }) {
+  console.log("Render Counter")
+
+  return (
+      <form>
+          <p>Counter: {count}</p>
+      </form>
+  );
+}
+```
+El resultado va a ser exactamente igual que al usar React.Component.
+
+![](https://static.platzi.com/media/user_upload/Screen%20Shot%202020-11-09%20at%2010.06.48%20PM-69fa2774-b1d5-4f4e-915c-29558de043d2.jpg)
+
+Ahora usemos React.memo para que nuestro componente no se renderice si las props que recibe siguen igual que en el render anterior.
+```javascript
+const App = React.memo(function() {
+    /* … */
+});
+
+const Permissions = React.memo(function({ canEdit }) {
+    /* … */
+});
+
+const Counter = React.memo(function({ count }) {
+    /* … */
+});
+```
+![](https://static.platzi.com/media/user_upload/Screen%20Shot%202020-11-09%20at%2010.12.42%20PM-61fb80b7-91a8-4dfb-ad64-1fa9d9829cda.jpg)
+
+**¿Cómo crear una comparación personalizada con React.memo o shouldComponentUpdate?**
+
+En algunos casos puede que no necesitemos shallow comparison, sino una comparación o validación personalizada. En estos casos lo único que debemos hacer es reescribir el método shouldComponentUpdate o enviar un segundo argumento a React.memo (casi siempre incluimos los keywords are equal al nombre de esta función).
+
+Esta nueva comparación la necesitaremos, por ejemplo, cuando nuestro componente recibe varias props, pero solo necesita su valor inicial, es decir, sin importar si cambian, a nuestro componente le da igual y solo utilizará la primera versión de las props.
+```javascript
+// Con clases
+class Permissions extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return false;
+    }
+
+    render() {
+        /* … */
+    }
+}
+
+// Con hooks
+function memoStopIfPropsAreEqualOrNot(oldProps, newProps) {
+  return true;
+}
+
+const Permissions = React.memo(function({ canEdit }) {
+    /* … */
+}, memoStopIfPropsAreEqualOrNot);
+```
+En este caso evitamos que nuestro componente se actualice sin importar si cambian nuestras props. Pero ¿qué tal si sí debemos volver a renderizar cuando cambia alguna de nuestras props?
+```javascript
+// Con clases
+class Permissions extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.input.value !== nextProps.input.value) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+// Con hooks
+function memoIsInputEqual(oldProps, newProps) {
+    if (oldProps.input.value !== newProps.input.value) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+const Permissions = React.memo(function({ canEdit }) {
+    /* … */
+}, memoIsInputEqual);
+```
+Recuerda que la función shouldComponentUpdate debe devolver true si queremos que nuestro componente se vuelva a renderizar. En cambio, la función de evaluación de React.memo debe devolver false si nuestras props son diferentes y, por ende, queremos permitir un nuevo render.
+
+https://reactjs.org/docs/react-component.html#shouldcomponentupdate
+
