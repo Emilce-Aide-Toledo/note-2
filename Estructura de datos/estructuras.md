@@ -122,23 +122,42 @@ Para obtener de regreso los valores, se debe usar esa misma key, que será conve
 
 ![](https://media4.giphy.com/media/qvEkzFvba7v6u3vKbo/giphy.gif)
 ```javascript
-class HashTable{
-  constructor(size){
-  this.data=new Array(size);
+class HashTable {
+  constructor(size) {
+    this.data = new Array(size);
   }
-hashMethod(key){
-  let hash=0;for(let i=0;i<key.length;i++){
-    hash=(hash+key.charCodeAt(i)*i)%this.data.length;
+  hashMethod(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * i) % this.data.length;
     }
-return hash;
-}
-set(key,value){
-  const address=this.hashMethod(key);
-  if(!this.data[address]){this.data[address]=[];
+    return hash;
   }
-this.data[address].push([key,value]);return this.data;
-}
+  set(key, value) {
+    const address = this.hashMethod(key);
+    if (!this.data[address]) {
+      this.data[address] = [];
+    }
+    this.data[address].push([key, value]);
+    return this.data;
+  }
+  get(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
+      }
+    }
+    return undefined;
+  }
 }
 
-const myHashTable=new HashTable(50);
+const myHashTable = new HashTable(50);
 ```
+De forma grafica como se llega a cada elemento dentro de los buckets, y del currentBucket, a que arreglo de arreglos de clave, valor:
+
+![](https://static.platzi.com/media/user_upload/cap3-0f05f4a2-30c6-46bd-a4f3-67f925ac2f24.jpg)
+
