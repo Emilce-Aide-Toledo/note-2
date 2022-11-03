@@ -132,3 +132,28 @@ https://es.reactjs.org/docs/hooks-reference.html#usereducer
 https://platzi.com/blog/usestate-vs-usereducer/
 
 
+## useMemo: evita cálculos innecesarios en componentes
+---
+useMemo nos permitirá usar la memoización de forma simple, como ya vimos en la clase anterior, esto nos permite almacenar los resultados de una función para que, en caso de enviar los mismo argumentos que antes, ésta no haga los cálculos otra vez sino que devuelva el resultado que registró antes.
+
+https://www.w3schools.com/react/react_usememo.asp
+
+
+## useRef: manejo profesional de inputs y formularios
+---
+https://www.w3schools.com/react/react_useref.asp
+
+Con useRef puedes obtener elementos del dom y modificarlos (sin tanto problemas de bugs).
+
+https://medium.com/trabe/react-useref-hook-b6c9d39e2022
+
+## useCallback: evita cálculos innecesarios en funciones
+---
+https://www.developerway.com/posts/how-to-use-memo-use-callback
+
+https://dmitripavlutin.com/react-usecallback/
+
+https://kinsta.com/es/blog/react-usecallback/
+
+https://kentcdodds.com/blog/usememo-and-usecallback
+
