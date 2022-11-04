@@ -135,3 +135,68 @@ Un conjunto puede incluir dentro otro conjunto, a este ultimo se le llama subcon
 
 - Por ultimo el Complemento de un conjunto son todos los elementos que le faltan al conjunto para volverse el conjunto universal.
 
+## Teoría de grafos
+---
+El concepto básico de un gráfico es, un modelo matemático que sirve para representar las relaciones entre objetos de un conjunto.
+Un gráfico o grafo es un conjunto de vértices, o nodos, que están conectados a través de aristas, líneas o conexiones.
+
+Hay varios tipos de grafos, el primero de todos es el nodo simple donde tenemos los nodos y las conexiones gracias a las cuales nos podemos mover fácilmente a través del grafo.
+
+- El Multígrafo tiene varias conexiones entre dos nodos, permitiendo tener dos rutas distintas para estos nodos.
+
+- Un Pseudografo al igual que el multígrafo puede tener múltiples conexiones entre dos nodos y, además, una de estas conexiones puede partir y terminar en el mismo nodo.
+
+- El Grafo Ponderado cuenta con un valor dentro de las conexiones, esto puede verse como el costo, o recurso, de una ruta de nodos.
+
+- Por último, el Grafo Dirigido establece una dirección en las conexiones, esta dirección se representa con una flecha, también existe el Multígrafo Dirigido que cuenta con dirección en las conexiones y puede haber múltiples conexiones entre dos nodos.
+
+![](https://i.ibb.co/VBTRCy1/gra.png)
+
+![](https://3.bp.blogspot.com/-deOGbFEZxJ0/Vz2eLdhX0oI/AAAAAAAAAVc/4AxuQ3Z0gjALKbFSQ5xWf7-0UXvfaZWHACLcB/s640/4.PNG)
+
+![](https://i.ibb.co/Qp6p3sT/dddddd.png)
+
+## Grados, caminos, cadenas y ciclos
+---
+***¿Qué es el grado de un vértice?***
+
+Es el número de aristas que tiene un nodo con otros nodos.
+
+- Existe una propiedad matemática que nos dice que la sumatoria de todos los grados de los vértices de un grafo es igual al doble de las aristas.
+
+- Otra propiedad nos indica que si tenemos más de dos vértices con grado impar es imposible recorrer de una sola vez todo el grafo sin repetir un camino.
+
+- Una cadena es una sucesión de vértices y de conexiones entre sí.
+
+- Un camino a diferencia de una cadena es una sucesión de vértices y conexiones donde no puedes repetir ningún vértice ni conexión, mientras en un ciclo el vértice de inicio es igual al vértice donde termina.
+
+- Un grafo conexo es aquel donde todos los nodos están unidos entre sí.
+
+![](https://i.ibb.co/vBbQGnz/sdsdsdsd.png)
+
+![](https://i.ibb.co/bdMDhJK/pp.png)
+
+## Caminos y ciclos eulerianos
+---
+Un Camino Euleriano es aquel camino que recorre todo el grafo sin repetir una conexión, esto se cumplirá siempre y cuando un grafo no tenga más de dos vértices con grado impar.
+
+Un Ciclo Euleriano es aquel ciclo que recorre todo el grafo sin repetir una conexión, este se cumplirá solo cuando todos los vértices del grafo son grado par.
+
+## Caminos y ciclos hamiltonianos
+---
+A diferencia de los caminos y ciclos eulerianos, los caminos y ciclos hamiltonianos buscaran recorrer los nodos una sola vez sin importar el camino que utilicemos.
+
+Para afirmar que hay un camino hamiltoniano se debe cumplir la condición donde la suma del grado de dos vértices es mayor o igual al número de vértices menos uno, de otra forma puede que exista el camino hamiltoniano, pero no se podrá afirmar.
+
+Si hay un camino hamiltoniano, pero no un ciclo, entonces el grafo no es hamiltoniano.
+
+## Matriz de adyacencia
+---
+Existen diferentes formas de representar un grafo, ya hemos visto su representación gráfica, en esta clase vamos a ver como se representan con una matriz.
+
+Dentro de la matriz vamos a representar cada fila y columna con un nodo, si existe una conexión entre dos nodos entonces colocaremos un uno en la celda correspondiente, si no existe una conexión colocaremos un cero. Si algún nodo tiene una conexión consigo mismo entonces colocaremos un 2.
+
+Al sumar todas las filas nos dará como resultado el grado de cada vértice.
+
+La matriz de adyacencia es una de las representaciones más utilizadas.
+
