@@ -77,3 +77,32 @@ Recuerda tener presentes las tablas de verdad de las operaciones que vayas a rea
 ![](https://i.ibb.co/s3LLdh8/1.png)
 
 ![](https://i.ibb.co/k3VZ5s8/2.png)
+
+## Circuitos lógicos
+---
+
+**¿Qué es un circuito lógico?**
+
+Es una serie de elementos que cumple las leyes de la lógica y que nos permite representar proposiciones complejas, cumpliendo las leyes de los circuitos eléctricos.
+
+En un circuito eléctrico tenemos un generador que proporcionara energía a, por ejemplo, una bombilla. En este caso la energía pasara libremente siempre y cuando los interruptores que conformen dicho circuito estén todos cerrados.
+
+Así como en la lógica vemos que las proposiciones pueden tener un valor de verdadero o falso, en un circuito un interruptor puede estar cerrado o abierto, esto es igual que representar a verdadero como 1 y a falso como 0.
+
+Dentro de los circuitos, el conector lógico de **Conjunción** es igual a un circuito en serie. Por otro lado, la **Disyunción** se representa como un circuito en paralelo.
+
+![](https://static.platzi.com/media/user_upload/2021-05-08_11h58_47-a1b3b841-0182-4fab-adad-1204de13b01c.jpg)
+
+![](https://static.platzi.com/media/user_upload/2021-05-08_12h03_53-aee018b5-4aa4-4ff8-8497-9f99a72728fe.jpg)
+
+
+![](https://i.ibb.co/LC34c90/aa.png)
+
+![](https://i.ibb.co/SwGNC7N/qqq.png)
+
+![](https://static.platzi.com/media/user_upload/IMG_0140-f891856d-7e02-43c4-84d5-6bfb501050b7.jpg)
+
+Recuerda que para el conector lógico de Conjunción lo representamos con un circuito en serie mientras que para la Disyunción usamos un circuito en paralelo.
+
+
+
