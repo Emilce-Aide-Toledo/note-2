@@ -122,23 +122,171 @@ Para obtener de regreso los valores, se debe usar esa misma key, que será conve
 
 ![](https://media4.giphy.com/media/qvEkzFvba7v6u3vKbo/giphy.gif)
 ```javascript
-class HashTable{
-  constructor(size){
-  this.data=new Array(size);
+class HashTable {
+  constructor(size) {
+    this.data = new Array(size);
   }
-hashMethod(key){
-  let hash=0;for(let i=0;i<key.length;i++){
-    hash=(hash+key.charCodeAt(i)*i)%this.data.length;
+  hashMethod(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+      hash = (hash + key.charCodeAt(i) * i) % this.data.length;
     }
-return hash;
-}
-set(key,value){
-  const address=this.hashMethod(key);
-  if(!this.data[address]){this.data[address]=[];
+    return hash;
   }
-this.data[address].push([key,value]);return this.data;
+  set(key, value) {
+    const address = this.hashMethod(key);
+    if (!this.data[address]) {
+      this.data[address] = [];
+    }
+    this.data[address].push([key, value]);
+    return this.data;
+  }
+  get(key) {
+    const address = this.hashMethod(key);
+    const currentBucket = this.data[address];
+    if (currentBucket) {
+      for (let i = 0; i < currentBucket.length; i++) {
+        if (currentBucket[i][0] === key) {
+          return currentBucket[i][1];
+        }
+      }
+    }
+    return undefined;
+  }
+}
+
+const myHashTable = new HashTable(50);
+```
+De forma grafica como se llega a cada elemento dentro de los buckets, y del currentBucket, a que arreglo de arreglos de clave, valor:
+
+![](https://static.platzi.com/media/user_upload/cap3-0f05f4a2-30c6-46bd-a4f3-67f925ac2f24.jpg)
+
+## Linked List
+---
+Linked List son simplemente un conjunto de nodos ordenados que contienen los valores que necesitemos (numbers, strings, boolean, etc). Cada uno tiene un valor y una referencia a un siguiente nodo.
+
+![](https://static.platzi.com/media/user_upload/slides_estructuras_datos_js_page-0038-df338d63-caf1-4bcb-86c2-f8cd72e9db73.jpg)
+
+![](https://static.platzi.com/media/user_upload/slides_estructuras_datos_js_page-0041-11c13a63-e3f2-4978-af91-aa1281aa6d9d.jpg)
+
+![](https://i.ibb.co/y6d9zyB/LINKEDLIST.png)
+
+https://levelup.gitconnected.com/array-vs-linked-list-data-structure-c5c0ff405f16
+
+![](https://static.platzi.com/media/user_upload/idea2-3f4b94ee-ed78-4bc5-8cad-cbbf2531186c.jpg)
+
+https://medium.com/@bohndez.dev/estructuras-de-datos-linked-list-en-javascript-e84f3c50a4c4
+```JAVASCRIPT
+// 0 --> 1 -- > 2 -- > 3-- > 4-- > 5 -- > 6 --> null
+
+// let singlyLinkedList = {
+//   head: {
+//     value: 1,
+//     next: {
+//       value: 2,
+//       next: {
+//         value: 3,
+//         next: {
+//           value: 4,
+//           next: null,
+//         },
+//       },
+//     },
+//   },
+// };
+
+class Node{
+  constructor(value){
+    this.value=value;this.next=null;
+    }
+    }
+
+class MySinglyLinkedList{
+  constructor(value){
+    this.head={value:value,next:null,};
+    this.tail=this.head;this.length=1;
+    }
+
+append(value){
+  const newNode=new Node(value);
+  this.tail.next=newNode;
+  this.tail=newNode;this.length++;
+  return this;
+  }
+
+prepend(value){
+  const newNode=new Node(value);
+  newNode.next=this.head;
+  this.head=newNode;this.length++;
+  return this;
+  }
+
+insert(index,value){
+  if(index>=this.length){
+    return this.append(value);
+    }
+const newNode=new Node(value);
+const firstPointer=this.getTheIndex(index-1);
+const holdingPointer=firstPointer.next;
+firstPointer.next=newNode;
+newNode.next=holdingPointer;
+this.length++;return this;
+}
+
+getTheIndex(index){
+  let counter=0;
+  let currentNode=this.head;
+  while(counter!==index){
+    currentNode=currentNode.next;
+    counter++;
+    }
+return currentNode;
 }
 }
 
-const myHashTable=new HashTable(50);
+let myLinkedList=new MySinglyLinkedList(1);
+```
+## Doubly Linked List
+
+![](https://i.ibb.co/pKXGvV5/d.png)
+
+Una doubly linked list tiene el mismo comportamiento que una simply linked list, pero con la particularidad de que esta SI puede regresar.
+
+Aún necesita ir moviéndose una por una, pero ahora si lo desea puede regresar porque ya conoce quién es su elemento anterior y también quién es el siguiente, es decir, ya no es necesario repetir el ciclo.
+
+![](https://media0.giphy.com/media/7z2LofJrFuKw2VBKP3/giphy.gif)
+
+![](https://i.ibb.co/SfTpmhF/dd.png)
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+class MyDoublyLinkedList {
+  constructor(value) {
+    this.head = {
+      value: value,
+      next: null,
+      prev: null,
+    };
+    this.tail = this.head;
+
+    this.length = 1;
+  }
+  append(value) {
+    const newNode = new Node(value);
+    newNode.prev = this.tail;
+    this.tail.next = newNode;
+    this.tail = newNode;
+
+    this.length++;
+
+    return this;
+  }
+}
+
+let myDoublyLinkedList = new MyDoublyLinkedList(1);
 ```
