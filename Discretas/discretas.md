@@ -105,4 +105,33 @@ Dentro de los circuitos, el conector lógico de **Conjunción** es igual a un ci
 Recuerda que para el conector lógico de Conjunción lo representamos con un circuito en serie mientras que para la Disyunción usamos un circuito en paralelo.
 
 
+## Conjuntos
+---
+"Un conjunto lo podemos definir como un grupo de objetos, personas, o elementos unidos por una misma característica como por ejemplo sería el conjunto de números pares. Dentro de un conjunto no importa el orden de los elementos ni si se repite alguno de ellos.
+
+En conjuntos es muy importante hablar sobre la relación de pertenencia, esto indica si un objeto pertenece a algún conjunto, es representada por el símbolo ∈. Mientras que cuando un objeto no pertenece a algún conjunto, usaremos el símbolo ∉.
+
+Podemos determinar un conjunto de dos diferentes formas:
+- Por extensión: usada cuando conocemos cada elemento individualmente dentro del conjunto, nombramos cada elemento que integra el conjunto.
+
+-  Por compresión: nos sirve para describir solamente las cualidades de los elementos que integran el conjunto.
+
+Por lo general cuando hablamos de conjuntos finitos los determinamos por extensión a menos que sean muy grandes; los conjuntos infinitos siempre vas a ser determinados por compresión.
+
+La cardinalidad es el número de elementos que integran un conjunto.
+
+Un conjunto puede incluir dentro otro conjunto, a este ultimo se le llama subconjunto.
+
+## Operaciones entre conjuntos
+- Al momento de hablar de conjuntos es necesario saber que existen algunos conjuntos especiales. El primero es el conjunto nulo, es un conjunto donde no hay ningún elemento.
+
+- Un conjunto unitario es integrado solo por un único elemento. Por otro lado, el conjunto universal es aquel que este compuesto por todos los conjuntos que estés manejando.
+
+- Dentro de las operaciones entre conjuntos podemos encontrar la Unión, la cual representa la adición de un conjunto A con el conjunto B.
+
+- La Intersección de dos conjuntos A y B son aquellos elementos que se encuentran tanto en A como en B.
+
+- En la Resta de conjuntos a diferencia de la unión y la intersección, si importa el orden de los conjuntos, por ejemplo, la Resta de un conjunto B a un conjunto A retira los elementos que contiene B que se encuentran en el conjunto A.
+
+- Por ultimo el Complemento de un conjunto son todos los elementos que le faltan al conjunto para volverse el conjunto universal.
 
