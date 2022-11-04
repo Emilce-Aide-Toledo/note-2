@@ -405,3 +405,61 @@ const myQueue = new Queue();
 
 ```
 
+## Trees
+---
+![](https://i.ibb.co/CQ7t22G/trees.png)
+
+![](https://media1.giphy.com/media/eumDfmFb9eFmvx1yqN/giphy.gif)
+
+Un Binary Search Tree básicamente costa de un elemento root (El elemento padre del que todos descienden). Es a partir de ese elemento en donde se empieza la búsqueda.
+
+La condición es simple, un elemento únicamente puede tener dos descendientes, no más. Los descendientes que son mayores que el elemento padre se colocan del lado derecho y los descendientes que son menores se colocan del lado izquierdo.
+
+Para buscar en un Binary Search Tree simplemente tienes que preguntarte: ¿Este elemento es mayor o menor que el que estoy buscando? Ohh es mayor, entonces me voy para la izquierda, y así sucesivamente hasta que encuentres el elemento que estabas buscando.
+
+![](https://i.ibb.co/zSdzXCw/mettree.png)
+```javascript
+//      10
+//   4     20
+// 2  8  17  170
+
+class Node {
+  constructor(value) {
+    this.left = null;
+    this.right = null;
+    this.value = value;
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null;
+  }
+  insert(value) {
+    const newNode = new Node(value);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      let currentNode = this.root;
+      while (true) {
+        if (value < currentNode.value) {
+          if (!currentNode.left) {
+            currentNode.left = newNode;
+            return this;
+          }
+          currentNode = currentNode.left;
+        } else {
+          if (!currentNode.right) {
+            currentNode.right = newNode;
+            return this;
+          }
+          currentNode = currentNode.right;
+        }
+      }
+    }
+  }
+}
+
+const tree = new BinarySearchTree();
+```
+
