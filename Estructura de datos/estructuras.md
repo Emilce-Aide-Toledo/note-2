@@ -290,3 +290,61 @@ class MyDoublyLinkedList {
 
 let myDoublyLinkedList = new MyDoublyLinkedList(1);
 ```
+
+## Stack
+---
+Un stack basicamente es una pila, es decir, algo que estás apilando, lo primero que entra se queda hasta abajo y lo último que entra se queda hasta arriba, de ahí su nombre LIFO, Las In (El último que entra), First Out (Es el primero que sale).
+
+![](https://media0.giphy.com/media/y6tP2zWXuU4ApNLEM0/giphy.gif)
+
+![](https://i.ibb.co/wrvQkH8/metStack.png)
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.top = null;
+    this.bottom = null;
+    this.length = 0;
+  }
+  peek() {
+    return this.top;
+  }
+  push(value) {
+    const newNode = new Node(value);
+    if (this.length === 0) {
+      this.top = newNode;
+      this.bottom = newNode;
+    } else {
+      const holdingPointer = this.top;
+      this.top = newNode;
+      this.top.next = holdingPointer;
+    }
+
+    this.length++;
+
+    return this;
+  }
+  pop() {
+    if (!this.top) {
+      return null;
+    }
+    if (this.top === this.bottom) {
+      this.bottom = null;
+    }
+    this.top = this.top.next;
+    this.length--;
+
+    return this;
+  }
+}
+
+const myStack = new Stack();
+```
+
