@@ -463,3 +463,85 @@ class BinarySearchTree {
 const tree = new BinarySearchTree();
 ```
 
+## Graphs
+---
+![](https://static.platzi.com/media/user_upload/Post%20Instagram%20%2819%29-6eea4029-c0b4-4a34-8165-c72ae59b1738.jpg)
+
+![](https://i.ibb.co/pLVFxkY/cc.png)
+
+La matriz de adyacencia es simétrica cuando el grafo es no dirigido, y no tiene por que serlo cuando es dirigido.
+
+Es posible que dos nodos estén conectados por más de una arista, entonces en la matriz de adyacencia habrá que colocar el número de conexiones entre esos nodos.
+
+Además la diagonal principal de la matriz representa la conexión de un nodo consigo mismo, que en ocasiones existe.
+
+![](https://static.platzi.com/media/user_upload/matriz-ady-8692de4a-928f-4966-a8b2-4ca8be2a0a2c.jpg)
+
+Además se puede representar un grafo ponderado con esta matriz, donde el valor representa el coste de ir de un nodo a otro:
+
+![](https://static.platzi.com/media/user_upload/ponderado-e6b47360-b894-4548-a29e-23bd1fb453c1.jpg)
+
+Si no hay conexión entre nodos es imposible ir directamente, por eso el coste es infinito. Y el coste para ir desde un nodo hasta sí mismo es nulo, por eso en la diagonal principal solo hay ceros.
+
+```javascript
+/* 
+   2 - 0
+  / \
+ 1 - 3
+*/
+
+// Edge List
+
+const graph = [
+  [0, 2],
+  [2, 3],
+  [2, 1],
+  [1, 3],
+];
+
+// Adjacent List
+//       0    1     2        3
+const graph = [[2], [2, 3], [0, 1, 3], [1, 2]];
+
+const graph = {
+  0: [2],
+  1: [2, 3],
+  2: [0, 1, 3],
+  3: [1, 2],
+};
+
+// Adjacent Matrix
+
+const graph = [
+  [0, 0, 1, 0],
+  [0, 0, 1, 1],
+  [1, 1, 0, 1],
+  [0, 1, 1, 0],
+];
+
+const graph = {
+  0: [0, 0, 1, 0],
+  1: [0, 0, 1, 1],
+  2: [1, 1, 0, 1],
+  3: [0, 1, 1, 0],
+};
+```
+```javascript
+class Graph {
+  constructor() {
+    this.nodes = 0;
+    this.adjacentList = {};
+  }
+  addVertex(node) {
+    this.adjacentList[node] = [];
+    this.nodes++;
+  }
+  addEdge(node1, node2) {
+    this.adjacentList[node1].push(node2);
+    this.adjacentList[node2].push(node1);
+  }
+}
+
+const myGraph = new Graph();
+
+```
