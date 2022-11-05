@@ -200,3 +200,18 @@ Al sumar todas las filas nos dará como resultado el grado de cada vértice.
 
 La matriz de adyacencia es una de las representaciones más utilizadas.
 
+![](https://i.ibb.co/5GGpTHz/sad.png)
+
+![](https://static.platzi.com/media/user_upload/1%20Confusion%20en%20Matriz%20de%20Adyacencia-3f293b86-c313-493c-b76d-7c2d842fe5d3.jpg)
+
+## Matriz de incidencia
+---
+Antes de construir una matriz de incidencia deberás darle un nombre o identificador a cada conexión de tu grafo. Estas conexiones van a representar las columnas de tu matriz y los nodos van a representar las filas.
+
+Colocaremos un 1 en las celdas donde una conexión incida en un nodo, si no incide en el nodo entonces colocaremos un 0.
+
+![](https://i.ibb.co/DkGM8QP/incidencia.png)
+
+![](https://i.ibb.co/cJ6q3yd/incidencia2.png)
+
+Para saber a partir de nuestra matriz si nuestro grafo es dirigido o no dirigido basta con analizar si la matriz es simétrica o asimétrica, en caso de ser simétrica entonces el grafo es no dirigido y si es asimétrica entonces el grafo es dirigido.  Los vértices de la fila son de los que parte una arista
