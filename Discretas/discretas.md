@@ -214,4 +214,86 @@ Colocaremos un 1 en las celdas donde una conexión incida en un nodo, si no inci
 
 ![](https://i.ibb.co/cJ6q3yd/incidencia2.png)
 
-Para saber a partir de nuestra matriz si nuestro grafo es dirigido o no dirigido basta con analizar si la matriz es simétrica o asimétrica, en caso de ser simétrica entonces el grafo es no dirigido y si es asimétrica entonces el grafo es dirigido.  Los vértices de la fila son de los que parte una arista
+Para saber a partir de nuestra matriz si nuestro grafo es dirigido o no dirigido basta con analizar si la matriz es simétrica o asimétrica, en caso de ser simétrica entonces el grafo es no dirigido y si es asimétrica entonces el grafo es dirigido.  Los vértices de la fila son de los que parte una arista.
+
+## Árboles
+---
+
+Los árboles son un tipo de gráfica que tiene muchas aplicaciones en Machine Learning, Ciencias de la computación y en la programación. Un árbol representa una estructura de datos.
+
+A lo largo de este módulo aprenderemos qué es un árbol, cuales son los tipos de árbol que existen dando énfasis en los árboles binarios.
+
+
+Los Árboles nos permiten organizar o estructurar información. Si tenemos un nodo A y un nodo B, solo existirá una conexión entre ellos.
+
+Los árboles son usados frecuentemente para expresar relaciones de jerarquía.
+
+Existen diferentes tipos de árboles:
+
+- Libre: no es claro cuál es el nodo principal o nodo raíz dentro de este árbol.
+
+- Raíz: se ve una estructura clara de los nodos. Todos parten de un mismo nodo.
+
+- Expansión: es similar al grafo ponderado, la conexión entre los nodos tiene un recurso asociado.
+
+- Binario: en cada uno de los niveles del árbol se tiene un máximo de dos conexiones.
+
+Dentro de los árboles existe el nivel y la altura, los valores de estos cambiarán dependiendo del nodo que tomes como raíz.
+
+El nivel de un árbol es igual al máximo nivel posible de un nodo, el nivel de un nodo se define por el número de conexiones entre el nodo y la raíz más uno.
+
+La altura de un árbol es igual al nivel del árbol más el nivel raíz.
+
+![](https://i.ibb.co/X2DDV8J/arboles.png)
+
+## Sub árboles, vértices, y notación
+---
+Un subárbol es una parte de un árbol que hace parte de un árbol más grande.
+
+Un vértice terminal es aquel nodo que ya no tiene más hijos o donde el árbol ya no se expande. Por otro lado, los vértices internos son aquellos que tienen hijos.
+
+## Árbol de expansión mínimo
+---
+Un árbol de expansión mínimo es aquel árbol que partiendo de una raíz pueda conectar todos los vértices buscando los caminos de menor costo. Para sacar el costo mínimo del árbol solo basta con ir sumando el valor que tiene cada conexión nivel por nivel, luego sumar todos los niveles.
+
+## Árbol binario
+---
+Un árbol binario es aquel donde tenemos un máximo de dos hijos por cada uno de los vértices.
+
+Existen dos tipos de arboles binarios, el primero de ellos es el árbol binario completo donde cada uno de los vértices tiene sus dos ramas bien definidas o no tiene ninguna.
+
+El árbol binario lleno es aquel donde todos los nodos llegan a un mismo punto y al final todas sus ramas son terminales.
+
+El árbol degenerado es donde la mayoría de sus nodos tienen solo un hijo.
+
+Un árbol binario es una estructura recursiva pues puede llamarse a si misma, puedes descomponerlo en partes más pequeñas.
+
+## Recorrido de árboles
+---
+
+Al momento de representar un árbol debemos elegir el orden en el cual vamos a recorrer dicho árbol. Dependiendo de qué orden se elija será la forma en que se va a representar el árbol.
+
+Existen tres formas de recorrer un árbol:
+
+- Pre orden: se inicia leyendo el nodo raíz, luego se pasa al hijo izquierdo y por ultimo al derecho.
+
+- In orden: inicia leyendo el hijo izquierdo, luego la raíz y por último el hijo derecho.
+
+- Pos orden: comienza por el hijo izquierdo para posteriormente ir al hijo derecho y por último al nodo raíz.
+
+## Expresiones aritméticas
+---
+Los árboles también nos sirven para representar expresiones aritméticas, para ello debe cumplir con las siguientes condiciones:
+
+- Los vértices terminales son operandos.
+- Los vértices internos son operadores.
+- La raíz siempre debe ser un operador.
+
+Así como vimos las diferentes formas para recorrer un árbol, las expresiones aritméticas tienen también sus propias formas:
+
+- Pre fijo: raíz-izquierda-derecha
+- In fijo: izquierda-raíz-derecha
+- Pos fijo: izquierda-derecha-raíz
+
+![](https://i.ibb.co/kxdsKDt/expr-arth-to-tree-tranversal-02-03-2020-21-04.jpg)
+
