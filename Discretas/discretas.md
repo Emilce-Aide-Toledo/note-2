@@ -297,3 +297,84 @@ Así como vimos las diferentes formas para recorrer un árbol, las expresiones a
 
 ![](https://i.ibb.co/kxdsKDt/expr-arth-to-tree-tranversal-02-03-2020-21-04.jpg)
 
+## Algoritmo
+---
+ Un algoritmo es una serie de pasos que nosotros seguiremos de acuerdo con una lógica.
+
+## Algoritmo de Prim
+---
+El algoritmo de Prim nos sirve para conectar todos los vértices a través de un árbol con el mínimo coste. Para calcular el coste total del árbol debemos sumar el valor de todas las aristas conectadas.
+
+El algoritmo de Prim nos indica que este se termina cuando hemos conectado todos los vértices con n-1 aristas, donde n es el número de vértices.
+
+![](https://i.ibb.co/SyFqM4W/prim.png)
+
+## Algoritmo de Dijkstra
+---
+El algoritmo de Dijkstra va a buscar la ruta optima o de menor coste entre dos vértices.
+
+Los pasos de este algoritmo son los siguientes:
+```
+1. Asignar el valor infinito a cada nodo que no ha sido visitado.
+```
+```
+2. Mantener un registro de los nodos visitados.
+```
+```
+3. Calcular la distancia a cada nuevo nodo sumando la distancia anterior.
+```
+```
+4. Si la nueva distancia que se calculo es menor que la anterior entonces reemplazar en el nodo, sino dejar la anterior.
+```
+```
+5. Se finalizará cuando se llega al nodo final.
+```
+
+![](https://i.ibb.co/g96tmCq/dis.png)
+
+## Algoritmo de Kruskal
+---
+El algoritmo de Kruskal al igual que el algoritmo de Prim sirve para buscar el árbol de expansión mínimo, la diferencia es que el algoritmo de Kruskal inicia seleccionando la arista de menor valor y después en cada iteración se agrega la arista de menor valor del conjunto disponible.
+
+## Algoritmo de Fleury
+---
+El algoritmo de Fleury va a encontrar un ciclo euleriano. Recordemos que un ciclo euleriano es un ciclo donde inicias y terminas en el mismo punto, pasando por todas las aristas una sola vez.
+
+Los pasos que seguir son:
+```
+1. Verificar grado del grafo.
+```
+```
+2. Realizar un circuito cerrado.
+```
+```
+3. En cada nueva iteración realizar un nuevo camino cerrado visitando aristas que no han sido visitadas.
+```
+```
+4. Reemplazar cada nuevo circuito en el inicial hasta visitar todas las aristas.
+```
+
+![](https://i.ibb.co/Sdytksv/f.png)
+
+## Algoritmo de flujo máximo
+---
+Habrá ocasiones donde no vamos a querer el coste mínimo, sino buscar el flujo máximo, para esas ocasiones nos servirá este algoritmo. Para este algoritmo usaremos un grafo dirigido empoderado.
+
+Los pasos del algoritmo son los siguientes:
+```
+1. Direccionar los flujos e iniciar en ceros.
+```
+```
+2. Obtener trayectorias buscando el mayor flujo.
+```
+```
+3. Escoger el menor flujo de la trayectoria, esto es la arista de menor valor dentro de tu camino que seleccionaste.
+```
+```
+4. Actualizar el gráfico con las capacidades mínimas, ósea, restando el valor de la arista del anterior paso a cada una de las aristas del camino.
+```
+```
+5. Buscar nueva trayectoria o camina en aumento y repetir hasta que no existan más.
+```
+![](https://i.ibb.co/Qm0D5rP/m.png)
+
