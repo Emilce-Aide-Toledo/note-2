@@ -540,3 +540,30 @@ Por lo tanto, la complejidad del algoritmo estará determinada por la complejida
  * Espacio Auxiliar -> O(1)
  */
 ```
+
+## Recomendaciones para la evaluación de algoritmos
+---
+Hasta ahora sabes que un algoritmo con O(1) es mejor que uno con O(n). ¡Genial! Pero, ¿y si ese algoritmo constante en tiempo O(1) se ejecuta en 1000 horas? ¿Y si ese algoritmo constante en espacio O(1) ocupa 1000 GB? La complejidad algorítmica es importante, pero dónde se ejecuta tu algoritmo determina qué tan importante es.
+
+**¿El crecimiento siempre importa?**
+
+Cuando la Complejidad Algorítmica deja de ser relevante, es donde debemos mejorar nuestro algoritmo para alcanzar nuestro objetivo de eficiencia.
+
+Tal vez tengamos el mejor algoritmo jamás visto, pero si lo ejecutamos en una computadora de hace 20 años con un procesador antiguo, pues no podemos esperar mucha rapidez.
+
+Si tenemos un algoritmo A con O(1) y un algoritmo B con O(1), aún podemos saber cuál tiene un mejor rendimiento midiendo el tiempo en que duran. Ya que no dependen puramente del análisis asintótico.
+
+En este caso, la solución del problema no se trata de buscar el algoritmo con menor complejidad, sino de buscar las mejores opciones o variables de entorno para ejecutar y resolver el problema.
+
+## Reglas para estructuras
+---
+Las reglas para Big-O en tiempo son:
+
+imagen:
+![](https://i.imgur.com/T62Y1ed.png)
+
+Las reglas para Big-O en espacio son:
+
+imagen:
+![](https://i.imgur.com/de94TQe.png)
+
