@@ -372,3 +372,83 @@ imagen:
 ***El crecimiento siempre importa***
 
 La complejidad de un algoritmo nace de cuántos recursos utiliza el algoritmo al ejecutarse. La notación Big-O solo se enfoca en el crecimiento en el peor de los casos, no en los valores que puede tener un algoritmo en segundos o bytes.
+
+## Ejemplo de cómo evaluar la complejidad temporal con Big-O
+--- 
+Cuando existen varias sentencias, se escoge la notación mayor entre todas las existentes en el algoritmo.
+
+En la sección de “Recursos”, en los “Archivos de la clase” se encuentran los archivos de los algoritmos, en la carpeta algorithms. Trata de resolverlos, escribiendo la complejidad de cada sentencia y la del algoritmo completo.
+
+**Búsqueda lineal**
+
+El siguiente algoritmo de búsqueda contiene dos notaciones Big-O. La notación contante corresponde al condicional y a las variables generadas. La notación lineal corresponde al ciclo repetitivo for.
+```javascript
+function linearSearch(arreglo, clave) { 
+  for (let indice = 0; indice < arreglo.length; indice++) { // O(n)
+    if (arreglo[indice] === clave) { // O(1)
+      return indice; // O(1)
+    }
+  }
+  return -1; // O(1)
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso lineal O(n).
+```javascript
+/**
+ * Complejidad Temporal -> O(n)
+ */
+```
+**Ordenamiento de burbuja**
+
+condicional y a las variables generadas. La notación lineal corresponde al ciclo repetitivo for interno. La notación cuadrática corresponde al ciclo repetitivo for externo.
+```javascript
+function bubbleSort(arreglo) {
+  let longitud = arreglo.length; // O(1)
+  for (let i = 0; i < longitud; i++) { // O(n^2)
+    for (let j = 0; j < longitud; j++) { // O(n)
+      if (arreglo[j] > arreglo[j + 1]) { // O(1)
+        let temporal = arreglo[j]; // O(1)
+        arreglo[j] = arreglo[j + 1]; // O(1)
+        arreglo[j + 1] = temporal; // O(1)
+      }
+    }
+  }
+  return arreglo; // O(1)
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso cuadrática O(n^2).
+```javascript
+/**
+ * Complejidad Temporal -> O(n^2)
+ */
+```
+**Ordenamiento de selección**
+
+El siguiente algoritmo de búsqueda contiene tres notaciones Big-O. La notación contante corresponde al condicional y a las variables generadas. La notación lineal corresponde al ciclo repetitivo for interno. La notación cuadrática corresponde al ciclo repetitivo for externo.
+```javascript
+function selectionSort(arreglo) {
+  let longitud = arreglo.length; // O(1)
+
+  for (let i = 0; i < longitud; i++) { // O(n^2)
+    let minimo = i; // O(1)
+    for (let j = i + 1; j < longitud; j++) { // O(n)
+      if (arreglo[j] < arreglo[minimo]) { // O(1)
+        minimo = j; // O(1)
+      }
+    }
+    if (minimo != i) { // O(1)
+      let temporal = arreglo[i]; // O(1)
+      arreglo[i] = arreglo[minimo]; // O(1)
+      arreglo[minimo] = temporal; // O(1)
+    }
+  }
+  return arreglo; // O(1)
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso cuadrática O(n^2).
+```javascript
+/**
+ * Complejidad Temporal -> O(n^2)
+ */
+```
+
