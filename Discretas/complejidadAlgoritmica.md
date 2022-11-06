@@ -262,3 +262,52 @@ console.log( generarMatriz(5))
 ]*/
 ```
 A partir de un valor numérico igual a 25, se generaron 25 elementos de la matriz y 5 arrays individuales en memoria.
+
+## Análisis asintótico
+---
+La asíntota es una recta que se aproxima lo máximo posible a una función, pero nunca llegan a cruzarse.
+
+image:
+![](https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/complejidad_algoritmica07.png)
+
+**Análisis asintótico**
+
+El análisis asintótico consiste en modelar nuestros algoritmos en una representación gráfica de su comportamiento limitante. Recordarás que los datos arrojados en el cálculo de la eficiencia del algoritmo no eran iguales en cada ejecución.
+
+Para evitar esto se modela una función capaz de representar el algoritmo a partir de sus procesos en función de la cantidad de entradas, que se aproxime al comportamiento real.
+
+Mientras la asíntota sea más vertical, la curva de la función de nuestro algoritmo necesitará muchos más recursos por pocos elementos de entrada, es decir, ocupará demasiado espacio o tiempo del necesario.
+
+Como puedes ver en la siguiente gráfica, estas curvas son las que debemos evitar y mantener una asíntota lo más horizontal posible. No te preocupes de la representación, lo veremos en la siguiente clase.
+
+image:
+![](https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/complejidad_algoritmica08.png)
+
+Existen varios tipos de funciones: constante, lineal, polinomial, logarítmica y exponencial.
+
+
+https://radiant-anchorage-11930.herokuapp.com/
+
+https://www.geogebra.org/calculator
+
+https://www.bigocheatsheet.com/
+
+## Notación Big-O
+---
+
+Con la notación Big-O buscamos descubrir una función (constante, lineal, polinomial, logarítmica y exponencial) que sea mayor o igual que la complejidad de un algoritmo, es decir, el peor caso que puede ejecutarse el programa.
+
+***Clases de Big-O***
+
+Las clases de Big-O son las representaciones simbólicas del tipo de crecimiento del algoritmo en el peor de los casos. El tipo de crecimiento es la función que se aproxima a los resultados de los valores de tiempo o espacio.
+
+Esta representación simbólica consiste en la letra O mayúscula seguida de paréntesis que incluyen el tipo de crecimiento.
+
+image:
+![](https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/complejidad_algoritmica09.png)
+
+De esta manera, ya conoces las funciones representadas en la siguiente gráfica, donde las peores complejidades están situadas al extremo superior izquierdo, y las mejores están en el extremo inferior derecho. De las cuales representan el rendimiento del algoritmo.
+
+
+image:
+![](https://cdn.document360.io/da52b302-22aa-4a71-9908-ba18e68ffee7/Images/Documentation/complejidad_algoritmica08.png)
