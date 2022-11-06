@@ -452,3 +452,91 @@ Por lo tanto, la complejidad del algoritmo estará determinada por la complejida
  */
 ```
 
+https://github.com/360macky/complejidad-algoritmica-js/tree/master/algorithms
+
+## Ejemplo de cómo evaluar la complejidad espacial con Big-O Avanzado
+---
+
+<!-- El espacio auxiliar es el espacio ocupado menos el espacio ocupados por los datos de entrada -->
+
+Cuando existen varias sentencias, se escoge la notación mayor entre todas las existentes en el algoritmo.
+
+Ahora que ya calculaste la complejidad temporal con Big-O, trata de calcular de la misma forma la complejidad espacial. Recuerda que el espacio auxiliar es la memoria almacenada sin tener en cuenta los datos de entrada.
+
+**Búsqueda lineal**
+
+El siguiente algoritmo de búsqueda contiene dos notaciones Big-O. La notación contante corresponde a la variable indice generada. La notación lineal correspondiente al arreglo en los datos de entrada.
+```javascript
+function linearSearch(arreglo, clave) { // O(n)
+  for (let indice = 0; indice < arreglo.length; indice++) { // O(1)
+    if (arreglo[indice] === clave) { // No se genera espacio en memoria
+      return indice;  // No se genera espacio en memoria
+    }
+  }
+  return -1; // No se genera espacio en memoria
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso constante O(n), y el espacio auxiliar tendrá una complejidad constante O(1).
+```javascript
+/**
+ * Complejidad Espacial -> O(n)
+ * Espacio Auxiliar -> O(1)
+ */
+```
+
+**Ordenamiento de burbuja**
+
+El siguiente algoritmo de búsqueda contiene una notación Big-O. La notación contante corresponde a las variables generadas dentro de la función. La notación lineal correspondiente al arreglo en los datos de entrada.
+```javascript
+function bubbleSort(arreglo) {
+  let longitud = arreglo.length; // O(1)
+  for (let i = 0; i < longitud; i++) { // O(1)
+    for (let j = 0; j < longitud; j++) { // O(1)
+      if (arreglo[j] > arreglo[j + 1]) { // No se genera espacio en memoria
+        let temporal = arreglo[j]; // O(1)
+        arreglo[j] = arreglo[j + 1]; // No se genera espacio en memoria
+        arreglo[j + 1] = temporal; // No se genera espacio en memoria
+      }
+    }
+  }
+  return arreglo; // No se genera espacio en memoria
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso constante O(n), y el espacio auxiliar tendrá una complejidad constante O(1).
+```javascript
+/**
+ * Complejidad Espacial -> O(n)
+ * Espacio Auxiliar -> O(1)
+ */
+```
+**Ordenamiento de selección**
+
+El siguiente algoritmo de búsqueda contiene una notación Big-O. La notación contante corresponde a las variables generadas dentro de la función. La notación lineal correspondiente al arreglo en los datos de entrada.
+```javascript
+function selectionSort(arreglo) {
+  let longitud = arreglo.length; // O(1)
+
+  for (let i = 0; i < longitud; i++) { // O(1)
+    let minimo = i; // O(1)
+    for (let j = i + 1; j < longitud; j++) { // O(1)
+      if (arreglo[j] < arreglo[minimo]) { // No se genera espacio en memoria
+        minimo = j; // No se genera espacio en memoria
+      }
+    }
+    if (minimo != i) { // No se genera espacio en memoria
+      let temporal = arreglo[i]; // O(1)
+      arreglo[i] = arreglo[minimo]; // No se genera espacio en memoria
+      arreglo[minimo] = temporal; // No se genera espacio en memoria
+    }
+  }
+  return
+   arreglo; // No se genera espacio en memoria
+}
+```
+Por lo tanto, la complejidad del algoritmo estará determinada por la complejidad mayor que exista. En este caso constante O(n), y el espacio auxiliar tendrá una complejidad constante O(1).
+```javascript
+/**
+ * Complejidad Espacial -> O(n)
+ * Espacio Auxiliar -> O(1)
+ */
+```
