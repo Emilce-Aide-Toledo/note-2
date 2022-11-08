@@ -40,6 +40,33 @@ Mide todos los cambios inesperados en el layout de una página.
 
 
 ## Proceso de renderizado del navegador
+
+**Etapas de render del navegador**
+
+Es el proceso de tomar el codigo HTML CSS y JS para convertirlos en pixeles en la pantalla
+
+5 etapas:
+- Etapa 1 y 2: Object Model
+- Etapa 3: Render Tree
+- Etapa 4 y 5: Layout / Paint
+
+>Object Model
+
+Es donde se construye el DOM
+
+Construye un árbol de arriba hacia abajo
+
+También se construye el CSSOM
+
+
+>Render Tree
+
+En este proceso se distingue que va a pintar y que no
+
+>Layout / Paint
+
+Calcula el ancho disponible del viewport para poder pintarlo
+
 ![](https://static.platzi.com/media/user_upload/Desktop%20-%201-d8062a03-242b-4576-9d8b-6986b6604518.jpg)
 
 ![](https://static.platzi.com/media/user_upload/1-2740f12d-b115-4bc6-a4fd-f7c1e9632672.jpg)
