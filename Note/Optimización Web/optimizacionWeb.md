@@ -74,3 +74,22 @@ Calcula el ancho disponible del viewport para poder pintarlo
 ![](https://static.platzi.com/media/user_upload/2-5096828b-f194-49b7-b949-027714bfaa98.jpg)
 
 ![](https://static.platzi.com/media/user_upload/render-tree-construction-e961f8ee-97e7-4282-909f-3038da08f8f6.jpg)
+
+## Recursos que bloquean el navegador
+
+*Tanto JavaScript como CSS son recursos bloqueantes*. Esto quiere decir que cada vez que el navegador encuentra estos archivos, debe parar e interpretarlos mientras sigue haciendo parsing del HTML.
+
+Script por defecto
+
+bloquea el parsing durante la descarga y ejecución del script
+![](https://static.platzi.com/media/user_upload/script-6b49d095-c6a9-4eac-9d06-567c44bae413.jpg)
+
+Script Defer
+
+descarga el script JS pero no lo ejecuta hasta que se finaliza el parsing del HTML.
+![](https://static.platzi.com/media/user_upload/defer-2e3c94f3-a21e-4d1b-9688-0b05e112e761.jpg)
+
+Script Async
+
+descarga el script JS durante el parsing y una vez se termine de descargar lo ejecuta inmediatamente, bloqueando solo una “pequeña” parte del parsing.
+![](https://static.platzi.com/media/user_upload/async-4b2b2094-d9f6-4677-847a-11fc3851b871.jpg)
